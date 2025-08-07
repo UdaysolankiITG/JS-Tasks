@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      text-decoration: none;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+      background-color: white;
+      color: black; }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      background-color: lightblue;
+      padding: 20px;
+    }
+
+    ul {
+      display: flex;
+      gap: 30px;
+    }
+
+    a {
+      font-size: large;
+      color: black;
+    }
+
+ 
+ 
+
+
+    .main {
+      padding: 200px;
+      display: flex;
+      justify-content: center;
+      padding-bottom: 350px;
+    }
+
+    footer {
+      text-align: center;
+      background-color: gray;
+      padding: 20px;
+    }
+
+    
+    body.dark-mode {
+      background-color: #121212;
+      color: white;
+    }
+
+  body.dark-mode .header {
+      background-color: #1e1e1e;
+    }
+
+   body.dark-mode a {
+      color: white;
+    }
+
+    
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header">
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">More</a></li>
+          <li><a href="#">About Us</a></li>
+        </ul>
+      </nav>
+      <button onclick="toggleDarkMode()">Dark Mode</button>
+    </div>
+  </header>
+
+  <section>
+    <div class="main">
+      <h1 id="heading">Welcome to My Website</h1>
+    </div>
+  </section>
+
+  <footer>
+    <p> footer</p>
+  </footer>
+
+  <script>
+    
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+    let ele = document.getElementById("heading");
+ setInterval(() => {
+  ele.innerHTML="I am a coder";
+   setInterval(() => {
+      ele.innerHTML="I am a developer";
+    }, 3000);
+ }, 3000);
+   
+    
+  </script>
+</body>
+
+</html>
+

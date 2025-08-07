@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>document</title>
+</head>
+
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Show Text with Reset</title>
+  <style>
+    body {
+      padding: 20px;
+    }
+
+    #userInput {
+      padding: 8px;
+      width: 200px;
+    }
+   button:hover{
+    background-color: brown;
+    color:aquamarine;
+   }
+    button {
+      padding: 8px 12px;
+      margin-left: 5px;
+      cursor: pointer;
+      background-color: aqua;
+      border-radius: 59px;
+    }
+   input{
+    outline: none;
+    border-radius: 60px;
+    background-color: rgb(212, 204, 204);
+    color:beige;
+   }
+   input:hover{
+    background-color: brown;
+    color:aquamarine;
+   }
+    .to-do {
+      margin: 10px 0;
+      color:black;
+    }
+  .main {
+    margin: auto;
+    text-align: center;
+    border: 1px solid black;
+    height: 500px;
+    border-radius: 50px;
+    width: 510px;
+  }
+  </style>
+</head>
+<body>
+<div class="main">
+   <h2>To-do list</h2>
+
+  <input type="text" id="userInput" placeholder="Enter something...">
+  <button onclick="showText()">Show Text</button>
+  <button onclick="clearItems()">Reset</button>
+ <button onclick="clearAll()">Clear All</button>
+  <div id="outputContainer"></div>
+ 
+</div>
+  
+  <script>
+
+    let divcontainer = document.getElementById("outputContainer");
+    function showText() {
+      const input = document.getElementById("userInput").value;
+       const ele = document.createElement("p");
+       divcontainer.appendChild(ele)
+      ele.setAttribute("class","to-do") ;
+      ele.innerText = input;
+    }
+
+    
+    function clearItems() {
+      document.getElementById("userInput").value = '';
+    }
+    function clearAll() {
+      divcontainer.innerHTML = '';
+      document.getElementById("userInput").value = '';
+    }
+  </script>
+
+</body>
+</html>
+
+    </script>
+</body>
+
+</html>

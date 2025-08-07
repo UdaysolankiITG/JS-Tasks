@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active {
+            background-color: aqua;
+            width: 100%;
+            height: 100%;
+        }
+
+        .deactive {
+            background-color: black;
+            width: 100%;
+            height: 100%;
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 4. Attribute Ko Remove Karna
+Description: removeAttribute() ka use karke ek button se disabled attribute hatao jab wo click ho.
+ -->
+
+
+    <div id="remove" class="active">
+        <h1>my div</h1>
+    </div>
+    <button onclick="changebackground()">click</button>
+    <script>
+        function changebackground() {
+            let ele = document.getElementById("remove")
+            ele.removeAttribute("class") ;
+        }
+    </script>
+</body>
+
+</html>

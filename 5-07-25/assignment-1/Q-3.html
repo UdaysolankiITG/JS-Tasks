@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+</head>
+
+<body>
+     <script>
+          /*🔶 Question 3: Discount Calculator
+               Create an object with a productName and price. Apply:
+               20% discount if price is above 10000
+               10% discount if price is between 5000–10000
+               No discount if below 5000
+               Calculate and print the final price after applying discount.*/
+          const product = {
+               Product_name: "laptop",
+               price: 15000
+          }
+
+          if (product.price > 10000) {
+               let discount = (product.price / 100) * 20;
+               let newprice = product.price - discount;
+               console.log(newprice);
+          }
+          else if (product.price >= 10000) {
+               let discount = (product.price / 100) * 10;
+               let newprice = product.price - discount;
+               console.log(newprice);
+          }
+          else {
+               console.log("no-discount")
+          }
+     </script>
+</body>
+
+</html>

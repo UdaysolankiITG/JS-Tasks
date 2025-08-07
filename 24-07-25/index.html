@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+      <script>
+// function generateLeaderboard(students) {
+// let validStudents = students.filter(student => student.scores.length === 4);
+// let  studentsWithAverage = validStudents.map(student => {
+//    let  total = student.scores.reduce((sum, score) => sum + score, 0);
+//     let  average = total / student.scores.length;
+//     return { name: student.name, average };
+//   });
+//   studentsWithAverage.sort((a, b) => b.average - a.average);
+//   return studentsWithAverage.map((student, index) => {
+//     let res1 =  `Rank ${index + 1}: ${student.name} - Average: ${student.average}`;
+//     return res1;
+//   });
+// }
+//        const students = [
+//   { name: 'Alice', scores: [90, 85, 92, 88] },
+//   { name: 'Bob', scores: [78, 80, 75] }, 
+//   { name: 'Charlie', scores: [95, 98, 96, 99] },
+//   { name: 'David', scores: [88, 90, 85, 87] },
+// ];
+//  let res = generateLeaderboard(students);
+//  console.log(res);
+//    function generateLeaderboard(students) {
+//    let validStudents = students.filter((student) => {
+//     return student.scores.length === 4;
+//   }); let studentsWithAverage = validStudents.map((student) => {
+//     let total = student.scores.reduce((sum, score) =>{
+//       return sum + score, 0;
+//     });
+//  
+//   let  average = total / student.scores.length;
+//     return { name: student.name, average };
+//   });
+//    }
+//     const students = [
+//   { name: 'Alice', scores: [90, 85, 92, 88] },
+//   { name: 'Bob', scores: [78, 80, 75] }, 
+//   { name: 'Charlie', scores: [95, 98, 96, 99] },
+//   { name: 'David', scores: [88, 90, 85, 87] },
+// ];
+// let res = generateLeaderboard(students);
+//  console.log(res);
+//  Function Details:
+
+// Function ka Naam: generateLeaderboard
+
+// Parameters: students (jo ki student objects ka ek array hai).
+
+// Argument: Diye gaye example mein, generateLeaderboard function ko students array ke saath call kiya jayega.
+
+// Return Value: Function ko strings ka ek array return karna chahiye jo ranked leaderboard ko represent kare.
+
+// Description: Aapke paas students ka ek array hai, jisme har student ka naam aur uske test scores ka array hai. Aapko ek ranked leaderboard banana hai jo strings ka array ho.
+
+// Sabse pehle, un students ko filter karke hata do jinhone sabhi 4 test nahi diye hain.
+
+// Jo students bache hain, unka average score calculate karo.
+
+// Phir unhe unke average score ke hisab se descending order (bade se chhota) mein sort karo.
+
+// Aakhir mein, har entry ko is format mein taiyaar karo: "Rank N: [Name] - Average: [Score]".
+
+// Input/Output:
+
+//     const students = [
+//   { name: 'Alice', scores: [90, 85, 92, 88] },
+//   { name: 'Bob', scores: [78, 80, 75] }, 
+//   { name: 'Charlie', scores: [95, 98, 96, 99] },
+//   { name: 'David', scores: [88, 90, 85, 87] },
+// ];
+// // Function call: generateLeaderboard(students)
+
+// output 
+
+// [
+//   'Rank 1: Charlie - Average: 97',
+//   'Rank 2: Alice - Average: 88.75',
+//   'Rank 3: David - Average: 87.5'
+// ]
+function generateLeaderboard(students) {
+let validStudents = [];
+  for (let i = 0; i < students.length; i++) {
+    if (students[i].scores.length === 4) {
+      validStudents.push(students[i]);
+    }
+  }
+  let studentsWithAverage = [];
+  for (let i = 0; i < validStudents.length; i++) {
+    let student = validStudents[i];
+    let scores = student.scores;
+    let total = 0;
+
+    for (let j = 0; j < scores.length; j++) {
+      total += scores[j];
+    }
+
+   let average = total / scores.length;
+
+    studentsWithAverage.push({
+      name: student.name,
+      average: average
+    });
+  }
+
+  // Step 3: Sort by average score (highest first)
+  studentsWithAverage.sort(function(a, b) {
+    return b.average - a.average;
+  });
+
+  // Step 4: Create the leaderboard result
+  var leaderboard = [];
+
+  for (var i = 0; i < studentsWithAverage.length; i++) {
+    var student = studentsWithAverage[i];
+    var rank = i + 1;
+    // Round to 2 decimal places only if needed
+    var averageScore = Number.isInteger(student.average)
+      ? student.average
+      : student.average.toFixed(2);
+
+    var line = "Rank " + rank + ": " + student.name + " - Average: " + averageScore;
+    leaderboard.push(line);
+  }
+
+  return leaderboard;
+}
+
+       const students = [
+  { name: 'Alice', scores: [90, 85, 92, 88] },
+  { name: 'Bob', scores: [78, 80, 75] }, 
+  { name: 'Charlie', scores: [95, 98, 96, 99] },
+  { name: 'David', scores: [88, 90, 85, 87] },
+];
+ let res = generateLeaderboard(students);
+ console.log(res);
+
+ </script>
+</body>
+</html>

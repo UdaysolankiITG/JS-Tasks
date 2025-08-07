@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //  🔶 Question 7: BMI Calculator
+        //  Create a person object with name, weight (kg), and height (m).
+        //  Use formula: BMI = weight / (height × height)
+        //  Use if-else to print:
+        // "Underweight" < 18.5
+
+
+        // "Normal" 18.5–24.9
+
+
+        // "Overweight" 25–29.9
+
+
+        // "Obese" ≥ 30 -->
+
+
+
+        let person = {
+            name: "Uday",
+            weight: 70,
+            height: 1.75
+        };
+        let bmi = person.weight / (person.height * person.height);
+        console.log(`BMI of ${person.name}  is:  ${ bmi}`);
+        if (bmi <=18.5) {
+            console.log("Category: Underweight");
+        } else if (bmi >= 18.5 && bmi <= 24.9) {
+            console.log("Category: Normal");
+        } else if (bmi >= 25 && bmi <= 29.9) {
+            console.log("Category: Overweight");
+        } else {
+            console.log("Category: Obese");
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+Q1 - create three objects . each object should have these properties:
+   name ,age, salary ,education . then calculate and print :1 the average age of all three people
+Q2 - create 2 object  with age and salary 
+increase the age of both by 2 
+1 increase the age of both by 2
+2 increase the salary of both by 10,000
+<!-- Q3 - create  3 student object with these properties : name ,marks1,marks2, marks3 
+find  the average marks  of each  students by calculating their total marks the store the average marks of each students in array  - called studenyt-marks -->
+
+ Q4 create an object called 'classroom'
+ it should have a property  `students` that is an array  of 3 student object
+ object each student object should have :
+ name,hobbies (an array of 3 hobbies),city
+ print the second hobby of the third student
+
+ Q5 create an array called my-info which have 2 objects 
+ each objects have cityname  , address ,roll n 
+ then swap the value of one object with  other
+
+
+

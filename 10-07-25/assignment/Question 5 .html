@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //         5. Sum of Object Property Values
+        // Use for-in to find the sum of all numerical values in an object.
+
+        const marks = {
+            math: 80,
+            english: 70,
+            science: 90
+        };
+        let total = 0; 
+
+        for (let subject in marks) {  
+            total += marks[subject];   
+        }
+
+        console.log(total); 
+
+
+    </script>
+</body>
+
+</html>

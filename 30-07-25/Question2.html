@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //         /*
+        //   🧩 Question2: Find the Second Longest Word in a Sentence
+
+        //   ✅ Task:
+        //   Write a function to find the second longest word in a given sentence.
+
+        //   📌 Instructions:
+        //   - Create a function with a readable name 
+        //   - The function should take a sentence string as input.
+        //   - It should return the second longest word as a string.
+        //   - If there is a tie, return the first word in order of appearance with that length.
+        //   - Do not use built-in methods like .sort().
+
+        //   📝 Input Example:
+        //   let sentence = "I love programming in JavaScript very much";
+
+        //   🎯 Expected Output:
+      
+      function secondlongestword(sentence){
+         let str = sentence
+         let arr = str.split(" ");
+         arr.sort((a,b)=>{return b.length - a.length});
+         return arr[1];
+         
+    } 
+    let sentence = "I love programming in JavaScript very much";
+    console.log(secondlongestword(sentence))
+  
+    </script>
+</body>
+
+</html>

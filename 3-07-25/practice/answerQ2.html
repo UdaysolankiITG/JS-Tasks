@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Q2 - create 2 object  with age and salary 
+        // increase the age of both by 2 
+        // 1 increase the age of both by 2
+        // 2 increase the salary of both by 10,000
+        //2 object are already made
+        const obj1 = {
+            studentname: "uday salanki",
+            age: 18,
+            salary: 4000,
+        };
+        const obj2 = {
+            studentname: "harshit choudhary",
+            age: 20,
+            salary: 5000,
+        };
+        let age_increse  = 2;
+        let salary_increse = 10000;
+        
+        obj1.age += age_increse ; 
+        obj1.salary+= salary_increse;
+        obj2.age += age_increse ; 
+        obj2.salary += salary_increse;
+        console.log(`the  age increase of obj1:${obj1.age} and salry increase:${obj1.salary}`,'\n',
+                    `the  age increase of obj1:${obj2.age} and salry increase:${obj2.salary}`);
+
+    </script>
+</body>
+
+</html>

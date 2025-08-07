@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //  Subjects      -   total- passing-marks - other
+        //  hindi         -    100 - 32               -71 - dist /supply
+        //  english       -    50  - 18                35 - 
+        //  maths         -    100 - 39                85
+        //  science       -    100 - 41                81
+        //  socialScience -    100 - 29                55
+        //  sanskrit      -    50  - 20                30’
+
+        // Agar 2 main fail hai to supply 
+        // Agar 3 or 3 se jyda me fail to fail
+        // Agar 40 se kam - 3rd division
+        // Agar 40 - 59.99 - second division
+        // Agar 60 - 75 - 1st division
+        // Agar 75 se jyda - A+ division
+
+        let name = "Uday solanki";
+        let rollno =12515115;
+        const obtain_m = {
+            hindi:100,
+            english:50,
+            maths:100,
+            sceince:100 ,
+            Sst:100,
+            sanskrit:50
+        }
+     
+        let total_obtain= obtain_m.hindi + obtain_m.english + obtain_m.maths + obtain_m.sceince + obtain_m.Sst + obtain_m.sanskrit;
+        const out = {
+            hindi: 100,
+            english: 50,
+            maths: 100,
+            sceince: 100,
+            Sst: 100,
+            sanskrit:50
+        }
+        supplycount=0;
+         let supply={
+            remark:"suplymentry"
+         }
+         let total= out.hindi + out.english + out.maths + out.sceince + out.Sst + out.sanskrit;
+    
+        console.log(`***************************************10th Marksheet*******************************************`);
+        console.log(`-----------------BOARD OF SECONDRY EDUCATION , MADHYA PRADESH----------------------------`)
+        console.log(`Name       :${name}`)
+        console.log(`Roll no.   :${rollno}`)
+        console.log(`School Name:Saraswati Vidhya Mandir ,Vijay nagar ,Dewas `);
+        console.log(`Subject           - Marks Obtained         - Passing Marks        - Remarks `);
+//hindi
+if(typeof obtain_m.hindi ==="number" && obtain_m.hindi >=0 && obtain_m.hindi <=100 ){
+         if(obtain_m.hindi<=32){
+        console.log(`Hindi             - ${obtain_m.hindi}                    -  32                  - ${supply.remark}`)
+         supplycount++
+         }
+         else if(obtain_m.hindi>=71){
+        console.log(`Hindi             - ${obtain_m.hindi}                    -  32                  - dist`)
+         }
+         else{
+        console.log(`Hindi             - ${obtain_m.hindi}                   -  32                  - "--"`)
+         }
+}
+else{
+    console.log("error");
+}
+//english
+if(typeof obtain_m.english === "number" && obtain_m.english >=0 && obtain_m.english <=51){
+         if(obtain_m.english<=18){
+        console.log(`English           - ${obtain_m.english}                     -  18                  - ${supply.remark}`)
+         supplycount++
+         }
+         else if(obtain_m.english>=35){
+        console.log(`English           - ${obtain_m.english}                     -  18                  - dist`)
+         }
+         else{
+        console.log(`English           - ${obtain_m.english}                     -  18                  - "--"`)
+         }
+        }
+        else{
+    console.log("error");
+}
+//Maths
+if(typeof obtain_m.maths === "number" && obtain_m.english >=0 && obtain_m.english <=100){
+         if(obtain_m.maths<=39){
+        console.log(`Maths             - ${obtain_m.maths}                     -  39                  - ${supply.remark}`)
+         supplycount++
+         }
+         else if(obtain_m.maths>=85){
+        console.log(`Maths             - ${obtain_m.maths}                     -  39                  - dist`)
+         }
+         else{
+        console.log(`Maths             - ${obtain_m.maths}                     -  39                  - "--"`)
+         }
+        }
+        else{
+            console.log("error");
+            
+        }
+//Science
+ if(typeof obtain_m.sceince === "number" && obtain_m.sceince >=0 && obtain_m.sceince <=100){
+         if(obtain_m.sceince<=41){
+        console.log(`Science           - ${obtain_m.sceince}                   -  41                  - ${supply.remark}`)
+         supplycount++
+         }
+         else if(obtain_m.sceince>=81){
+        console.log(`Science           - ${obtain_m.sceince}                    -  41                  - dist`)
+         }
+         else{
+        console.log(`Science           - ${obtain_m.sceince}                     -  41                  - "--"`)
+         }
+        }
+        else{
+            console.log("error");
+        }
+//Social Science
+if(typeof obtain_m.Sst === "number" && obtain_m.Sst >=0 && obtain_m.Sst <=100){
+         if(obtain_m.Sst<=29){
+        console.log(`Social Science    - ${obtain_m.Sst}                      -  29                  -${supply.remark}`)
+         supplycount++
+         }
+         else if(obtain_m.sceince>=55){
+        console.log(`Social Science    - ${obtain_m.Sst}                     -  29                   - dist`)
+         }
+         else{
+        console.log(`Social Science    - ${obtain_m.Sst}                     -  29                  - "--"`)
+         }
+        }
+        else{
+            console.log("error");
+        }
+//Sanskrit
+if(typeof obtain_m.sanskrit === "number" && obtain_m.sanskrit >=0 && obtain_m.sanskrit <=50){
+         if(obtain_m.sanskrit<=20){
+        console.log(`Sanskrit            - ${obtain_m.sanskrit}                   -  20                  - ${supply.remark}`)
+         supplycount++
+         }
+         else if(obtain_m.sanskrit>=30){
+        console.log(`Sanskrit           - ${obtain_m.sanskrit}                    -  20                  - dist`)
+         }
+         else{
+        console.log(`Sanskrit          - ${obtain_m.sanskrit}                     -  20                  - "--"`)
+         }
+        }
+        else{
+            console.log("error");
+        }
+//obtain marks
+if(total_obtain>=0&& total_obtain<=500){
+        console.log(`Obtained Marks     : ${total_obtain}/${total}`)}
+        else{
+            console.log("error");
+        }
+//percentage
+       let percentage = total_obtain/5
+       console.log(`Percentage         : ${percentage}%`)
+//grade
+     if(percentage>=75){
+        console.log(`Grade        : A+`);
+     }
+     else if(percentage>=60 && percentage<=75){
+        console.log(`Grade              : 1st Division`);
+     }
+     else if(percentage>=40 && percentage<=59.99){
+        console.log(`Grade              : 2nd Division`);
+     }
+     else{ 
+        console.log(`Grade              : 3rd Division`);
+     }
+  
+     //overall remark
+     if(supplycount>=2&& supplycount<=2){
+        console.log("Overall Remark:Suplymentry");
+     }
+     else if (supplycount>=3){
+        console.log("Overall Remark:Fail");
+        
+     }
+     else{
+        console.log("Overall Remark:Pass")
+     }
+    </script>
+</body>
+</html>

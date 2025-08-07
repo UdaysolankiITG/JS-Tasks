@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* Question 6: Triangle Type Identifier
+         Create an object with three sides of a triangle: a, b, and c. Determine:
+             Equilateral: All sides equal
+             Isosceles: Any two sides equal
+             Scalene: All sides different
+             Use if-else to classify the triangle.*/
+        const triangle = {
+            side_a: 40,
+            side_b: 40,
+            side_c: 40
+        }
+        if (triangle.side_a == triangle.side_b &&
+            triangle.side_b == triangle.side_c &&
+            triangle.side_b == triangle.side_c
+        ) {
+            console.log("Equalateral triangle");
+        }
+        else if (triangle.side_a == triangle.side_b ||
+            triangle.side_b == triangle.side_c ||
+            triangle.side_b == triangle.side_c
+        ) {
+            console.log("Isosceles  triangle");
+        }
+        else {
+            console.log("Scalane triangle");
+        }
+    </script>
+</body>
+
+</html>

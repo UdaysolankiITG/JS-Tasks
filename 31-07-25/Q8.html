@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            background-color: bisque;
+            width: 50%;
+            height: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"><p>my div</p></div>
+    <div class="box"><p>my div</p></div>
+    <div class="box"><p>my div</p></div>
+    <div class="box"><p>my div</p></div>
+    <script>
+     let boxes = document.getElementsByClassName("box");
+     for(let i = 0 ;i< boxes.length;i++){
+        boxes[i].style.background ="green";
+     }
+    </script>
+</body>
+</html>

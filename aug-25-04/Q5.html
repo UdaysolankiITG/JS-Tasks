@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mouse Hover Box</title>
+    <style>
+        #Box {
+            width: 200px;
+            height: 200px;
+            background-color: gray;
+            margin: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+ 
+    <div id="Box"></div>
+
+    <script>
+       let box = document.getElementById("Box");
+        box.addEventListener("mouseenter", function () {
+            box.style.backgroundColor = "blue";
+        });
+        box.addEventListener("mouseleave", function () {
+            box.style.backgroundColor = "gray";
+        });
+    </script>
+
+</body>
+
+</html>

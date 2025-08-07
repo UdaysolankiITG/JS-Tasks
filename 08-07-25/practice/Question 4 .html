@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+//         🔶 Question 4: Character Counter
+//  Given a string stored in a variable, count the number of vowels in it using a loop.
+//  Print total vowels.
+
+        let text = "I AM learning javascript";
+        let vowelCount = 0;
+        let vowels = ['a', 'e', 'i', 'o', 'u'];
+        for (let i = 0; i < text.length; i++) {
+            let ch = text[i].toLowerCase();
+            if (vowels.includes(ch)) {
+                vowelCount++;
+            }
+        }
+        console.log(`Total vowels hain:${vowelCount}`);
+
+    </script>
+</body>
+
+</html>

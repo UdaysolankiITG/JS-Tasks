@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>toogle</title>
+  <style>
+    .mydiv {
+      background-color: yellow;
+      color: black;
+    }
+    #Box{
+        padding: 20px; 
+        border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="Box" >
+    <p onclick="toogle()">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta animi illum fugit magnam vero vel nobis, nemo quod, dolorum sed labore doloribus totam reiciendis fugiat perferendis quisquam quo hic! Ipsam?</p>
+  </div>
+  <button onclick="toogle()">click</button>
+
+  <script>
+    function toogle(){
+     const box = document.getElementById('Box');
+      if (box.classList.contains('mydiv')) {
+        box.classList.remove('mydiv');
+      } else {
+        box.classList.add('mydiv');
+      }
+    };
+  </script>
+
+</body>
+</html>

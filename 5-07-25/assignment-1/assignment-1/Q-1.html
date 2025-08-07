@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*  Question 1: Student Grading System
+  Create an object for a student with marks in three subjects: math, english, and science. Calculate the average marks and use if-else to assign grades based on the average:
+  A+ (≥90), A (80–89), B (70–79), C (60–69), Fail (<60).
+   Print the average and the grade in a sentence.*/
+        const result = {
+            maths: 100,
+            english: 100,
+            science: 100
+        };
+        let total_marks = result.maths + result.english + result.science;
+        let average_marks = total_marks / 3;
+        console.log(`average marks = ${average_marks}`)
+        if (average_marks >= 90) {
+            console.log("A+");
+        }
+        else if (average_marks <= 89) {
+            console.log("A")
+        }
+        else if (average_marks <= 79) {
+            console.log("B")
+        }
+        else if (average_marks <= 89) {
+            console.log("C")
+        }
+        else {
+            console.log("Fail");
+        }
+    </script>
+</body>
+
+</html>

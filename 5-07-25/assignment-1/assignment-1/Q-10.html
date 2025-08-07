@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //           Ek object banao jisme name aur unitsConsumed ho. Bill calculate karo:
+    // Pehle 100 units ₹5 per unit
+
+
+    // 101 se 300 units ₹7 per unit
+
+
+    // 300 se upar ₹10 per unit
+    //  Name aur total bill amount print karo.
+
+    const bill = {
+      consumer: "Uday",
+      consumed_unit: 400
+    }
+    if (bill.consumed_unit <= 100) {
+      let total_amount = bill.consumed_unit * 5;
+      console.log(`consumer name :${bill.consumer},\n
+         total bill amount:${total_amount}`);
+    }
+    else if (bill.consumed_unit <= 300) {
+      let total_amount = bill.consumed_unit * 7;
+      console.log(`consumer name :${bill.consumer},\n total bill amount:${total_amount}`);
+    }
+    else {
+       let total_amount = bill.consumed_unit * 10;
+      console.log(`consumer name :${bill.consumer},\n total bill amount:${total_amount}`);
+    }
+  </script>
+</body>
+
+</html>

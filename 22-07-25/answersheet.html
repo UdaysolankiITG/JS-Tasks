@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // // 1. Double the numbers in an array
+        // // Ek array mein diye gaye numbers ka har element double karo aur naya array return karo.
+        // // Input: [1, 2, 3] => Output: [2, 4, 6]
+        // let arr = [1, 2, 3];
+        // const newarr = arr.map(function (num) {
+        //     return num * 2;
+        // });
+        // console.log(newarr);
+
+    //  // 2. Convert array of strings to uppercase
+    //     // Ek string array lo jisme lowercase words ho aur har word ko uppercase mein convert karo.
+    //     // Input: ['a', 'b', 'c'] => Output: ['A', 'B', 'C']
+    //     let arr = ['a', 'b', 'c'];
+    //     let output = arr.map((str) => {
+    //         return str.toUpperCase();
+    //     });
+    //     console.log(output);
+
+    // // 3. Extract names from an array of objects
+    //     // Ek array jisme objects ho aur har object mein 'name' ho, usme se sirf names ka array banao.
+    //     // Input: [{ name: 'Alice' }, { name: 'Bob' }] => Output: ['Alice', 'Bob']
+    //     let arr = [{ name: 'Alice' }, { name: 'Bob' }];
+    //     const newarr = arr.map((obj) => {
+    //         return obj.name;
+    //     });
+    //     console.log(newarr);
+
+    //   // 4. Append "!" to each word
+    //     // Har string ke end mein ek exclamation mark (!) jod do aur naya array return karo.
+    //     // Input: ['hi', 'hello'] => Output: ['hi!', 'hello!']
+    //     let arr = ['hi', 'hello'];
+    //     let newarr = arr.map((str) => {
+    //         return str + '!';
+    //     });
+    //     console.log(newarr);
+
+//    // 5. Convert numbers to strings
+//         // Numbers ke array ko strings ke array mein badlo.
+//         // Input: [1, 2, 3] => Output: ['1', '2', '3']
+//         let arr = [1, 2, 3];
+//         let newarr = arr.map(function (num) {
+//             return num.toString();
+//         });
+//         console.log(newarr);
+
+//   // ==== FOREACH QUESTIONS ====
+//         // 6. Print each element of an array
+//         // forEach use karke array ke har element ko console par print karo.
+//         // Input: [1, 2, 3] => Output: console.log 1, 2, 3
+//         let arr = [1, 2, 3];
+//         let res = arr.forEach((value) => {
+//             console.log(value);
+//         });
+
+//    // 7. Sum all values in an array using forEach
+//         // forEach ka use karke array ke sabhi values ka sum nikalna hai.
+//         // Input: [1, 2, 3] => Output: 6
+//         function sumArray(arr) {
+//             let sum = 0;
+//             arr.forEach((num) => {
+//                 sum += num;  // sum mein har number ko add karte jaana
+//             });
+//             return sum;
+//         }
+
+//         let arr = [1, 2, 3];
+//         let res = sumArray(arr);
+//         console.log(res);
+
+
+        // let arr = [1, 2, 3, 4];
+
+        // arr.forEach((item, index) => {
+        //     console.log(`Index: ${ index }, Value: ${ item }`);
+        // });
+
+//  // 9. Push squared values to a new array
+//         // Array ke har number ka square nikalke naye array mein daalo using forEach.
+//         // Input: [2, 3, 4] => Output: [4, 9, 16]
+//         function sqrt(arr) {
+//             let result = [];
+//             arr.forEach((num) => {
+//                 result.push(num * num);
+//             });
+//             return result;
+//         }
+
+//         let arr = [2, 3, 4];
+//         let res = sqrt(arr);
+//         console.log(res);
+
+//  // 10. Log index and value for each array element
+//         // forEach ka use karke index aur value dono ko print karo in format: "Index X: value"
+//         // Input: ['a', 'b'] => Output: "Index 0: a", "Index 1: b"
+//         let arr = ['a', 'b'];
+//         arr.forEach(function (value, index) {
+//             console.log(Index ${ index }: ${ value });
+//         });
+
+//    // ==== FILTER QUESTIONS ====
+//         // 11. Filter out odd numbers
+//         // Sirf even numbers ko rakhna hai aur odd numbers ko hata do.
+//         // Input: [1, 2, 3, 4] => Output: [2, 4]
+//         let arr = [1, 2, 3, 4];
+//         let res = arr.filter((num) => {
+//             return num % 2 === 0;
+//         });
+//         console.log(res);
+
+//   // 12. Get users older than 18
+//         // User objects mein se unko rakhna hai jinki age 18 se zyada ho.
+//         // Input: [{ age: 17 }, { age: 19 }] => Output: [{ age: 19 }]
+//         let arr = [{ age: 17 }, { age: 19 }];
+//         let res = arr.filter((val) => {
+//             return val.age > 18;
+//         });
+//         console.log(res);
+
+//  // 13. Remove falsy values
+//         // Array mein se saare falsy values (false, 0, '', null, undefined, NaN) ko hatao.
+//         // Input: [0, 1, false, 'hello', null] => Output: [1, 'hello']
+//         let arr = [0, 1, false, 'hello', null];
+//         let res = arr.filter((value) => {
+//             return Boolean(value);
+//         });
+//         console.log(res);
+
+//  // 14. Get strings longer than 3 characters
+//         // Sirf un strings ko return karo jinki length 3 se zyada ho.
+//         // Input: ['hi', 'hello'] => Output: ['hello']
+//         let arr = ['hi', 'hello'];
+//         let res = arr.filter(function (str) {
+//             return str.length > 3;
+//         });
+//         console.log(res);
+
+
+
+    </script>
+</body>
+
+</html>

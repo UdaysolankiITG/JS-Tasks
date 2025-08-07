@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // //find min
+        // let arr = [3, 5, 5, 4, 25, 540]
+        // let min = Math.min(...arr)
+        // console.log(min)
+        // //find max
+        // let arr2 = [3, 5, 5, 4, 25, 540]
+        // let max = Math.max(...arr)
+        // console.log(max)
+        // //random pass 4 digit
+        // let min1 = 1000;
+        // let max1 = 9999;
+        // let pass = Math.floor((Math.random() * (max1 - min1)) + min);
+        // console.log(pass)
+        // //random no.
+        // let pre = Math.floor((Math.random() * 100))
+        // console.log(pre)
+        //random pass
+        // let min = 97;
+        // let max = 122;
+        // let i = 1;
+        // let pass = " ";
+        // while (i <= 4) {
+        //     pass += String.fromCharCode(Math.floor((Math.random() * (max - min)) + min));
+        //     i++
+        // }
+        // console.log(pass)
+        //pass to upper()
+        let min = 97;
+        let max = 122;
+        let i = 1;
+        let pass = " ";
+        while (i <= 4) {
+            pass += String.fromCharCode(Math.floor((Math.random() * (max - min)) + min));
+            i++
+        }
+        console.log(pass.toUpperCase())
+    </script>
+</body>
+
+</html>

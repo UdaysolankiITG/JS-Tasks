@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button{
+            justify-content: center;
+            width :50px;
+        }
+        .center{
+            display: flex;
+            gap: 50px;
+            justify-content: center;
+        }
+        .t1 {
+            height: 100px;
+            width: 100px;
+            background-color: red;
+        }
+
+        .t2 {
+            height: 100px;
+            width: 100px;
+            background-color: green;
+        }
+
+        .t3 {
+            height: 100px;
+            width: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center">
+    <div class="t1"><p>A</p></div>
+    <div class="t2"><p>B</p></div>
+    <div class="t3"><p>C</p></div>
+    <div> <button onclick="swap()">swap</button></div>
+    </div>
+   
+    <script>
+          function swap(){
+            let a = document.querySelector(".t1");
+            let b = document.querySelector(".t2");
+            let c = document.querySelector(".t3");
+            let swap = a.innerHTML;
+            a = b.innerHTML;
+            b = c.innerHTML;
+            c =swap
+          }
+    </script>
+</body>
+
+</html>

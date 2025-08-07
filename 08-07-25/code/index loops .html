@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <script>
+   //      //print table of 2 with the help of for  loop?
+   //      let a= 1;
+   //   for(let a=1;a<=10;a++){
+   //      console.log(a*4);
+   //   }
+         let count = 0;
+        for (let i = 1; i <= 100; i++) {
+          let number = i.toString(); 
+          for (let char of number) {
+            if (char === '5') {
+              count++; 
+            }
+          }
+        }
+        
+        console.log(`total  no. when 5  arrives:${count}`);
+
+     </script>
+</body>                     
+</html>

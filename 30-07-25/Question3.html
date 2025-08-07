@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+  🧩 Question: Sum the Indexes of Palindrome Words in a Sentence
+
+  ✅ Task: 
+  Write a function that takes a sentence as input and returns the sum of the indexes of the words that are palindromes.
+
+  📌 Instructions:
+  - Create a function with a meaningful name 
+  - The function should accept a string (sentence) as input.
+  - It should return a number — the sum of the indexes of words that are palindromes.
+  - A palindrome reads the same forwards and backwards.
+  - Ignore case (e.g., "Level" should be treated as "level").
+
+  📝 Input Example:
+  let sentence = "madam level car racecar apple";
+
+  🧮 Word List with Indexes:
+  0: "madam"     ✅  
+  1: "level"     ✅  
+  2: "car"       ❌  
+  3: "racecar"   ✅  
+  4: "apple"     ❌  
+
+  🎯 Expected Output:
+  0 + 1 + 3 = 4
+*/ 
+    function palendrome_sum(sentence){
+        let str = sentence;
+        let arr = str.split(" ");
+        let count = 0;
+        for (let i of arr) {
+        if(arr[i]%3==0){
+           count++ ;
+        }}
+       let sum = count;
+       return sum ;
+    };
+     let sentence = "madam level car racecar apple";
+   console.log(palendrome_sum(sentence))
+    </script>
+</body>
+
+</html>

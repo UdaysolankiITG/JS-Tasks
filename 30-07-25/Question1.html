@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <script>
+        /*
+  🧩 Question1: Count Words Longer Than 3 Letters
+
+  ✅ Task:
+  Given a sentence (a string), write a function that returns how many words in it are longer than 3 characters.
+
+  📌 Instructions:
+  - Create a function with a **clear and meaningful name**
+  - The function should **accept a sentence as input** (a string).
+  - The function should return a number — the count of words longer than 3 letters.
+  📝 Input Example:
+  let sentence = "JavaScript is super fun to learn";
+
+  🎯 Expected Output:
+  4
+
+*/ 
+     
+     function  Longer_words(sentence){
+       let str = sentence
+        let arr = str.split(" ");
+       let count = 0;
+       for (let i of arr) {
+         if(i.length>=3){
+           count++
+         }
+       }
+       return count;
+     }
+     let sentence =  "JavaScript is super fun to learn";
+     console.log(Longer_words(sentence))
+
+     </script>
+</body>
+</html>

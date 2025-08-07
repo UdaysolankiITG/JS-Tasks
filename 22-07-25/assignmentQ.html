@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // ==== MAP QUESTIONS ====
+        // 1. Double the numbers in an array
+        // Ek array mein diye gaye numbers ka har element double karo aur naya array return karo.
+        // Input: [1, 2, 3] => Output: [2, 4, 6]
+        // 2. Convert array of strings to uppercase
+        // Ek string array lo jisme lowercase words ho aur har word ko uppercase mein convert karo.
+        // Input: ['a', 'b', 'c'] => Output: ['A', 'B', 'C']
+        // 3. Extract names from an array of objects
+        // Ek array jisme objects ho aur har object mein 'name' ho, usme se sirf names ka array banao.
+        // Input: [{ name: 'Alice' }, { name: 'Bob' }] => Output: ['Alice', 'Bob']
+        // 4. Append "!" to each word
+        // Har string ke end mein ek exclamation mark (!) jod do aur naya array return karo.
+        // Input: ['hi', 'hello'] => Output: ['hi!', 'hello!']
+        // 5. Convert numbers to strings
+        // Numbers ke array ko strings ke array mein badlo.
+        // Input: [1, 2, 3] => Output: ['1', '2', '3']
+        // ==== FOREACH QUESTIONS ====
+        // 6. Print each element of an array
+        // forEach use karke array ke har element ko console par print karo.
+        // Input: [1, 2, 3] => Output: console.log 1, 2, 3
+        // 7. Sum all values in an array using forEach
+        // forEach ka use karke array ke sabhi values ka sum nikalna hai.
+        // Input: [1, 2, 3] => Output: 6
+        // 8. Capitalize first letter of each string (in-place)
+        // Lowercase strings ke array ko modify karke har word ka pehla letter capital banao.
+        // Input: ['apple', 'banana'] => Output: ['Apple', 'Banana']
+        // 9. Push squared values to a new array
+        // Array ke har number ka square nikalke naye array mein daalo using forEach.
+        // Input: [2, 3, 4] => Output: [4, 9, 16]
+        // 10. Log index and value for each array element
+        // forEach ka use karke index aur value dono ko print karo in format: "Index X: value"
+        // Input: ['a', 'b'] => Output: "Index 0: a", "Index 1: b"
+        // ==== FILTER QUESTIONS ====
+        // 11. Filter out odd numbers
+        // Sirf even numbers ko rakhna hai aur odd numbers ko hata do.
+        // Input: [1, 2, 3, 4] => Output: [2, 4]
+        // 12. Get users older than 18
+        // User objects mein se unko rakhna hai jinki age 18 se zyada ho.
+        // Input: [{ age: 17 }, { age: 19 }] => Output: [{ age: 19 }]
+        // 13. Remove falsy values
+        // Array mein se saare falsy values (false, 0, '', null, undefined, NaN) ko hatao.
+        // Input: [0, 1, false, 'hello', null] => Output: [1, 'hello']
+        // 14. Get strings longer than 3 characters
+        // Sirf un strings ko return karo jinki length 3 se zyada ho.
+        // Input: ['hi', 'hello'] => Output: ['hello']
+        // 15. Filter by property existence
+        // Sirf un objects ko return karo jinke paas specific property ho, jaise 'active'.
+        // Input: [{ name: 'X' }, { name: 'Y', active: true }] => Output: [{ name: 'Y', active: true }]
+        // ==== COMBO / CHAINING QUESTIONS ====
+        // 16. Get doubled even numbers
+        // Pehle even numbers filter karo, fir unko double karo using map.
+        // Input: [1, 2, 3, 4] => Output: [4, 8]
+        // 17. Get names of users over 20
+        // Users jinki age 20 se zyada ho unka naam return karo.
+        // Input: [{ name: 'A', age: 20 }, { name: 'B', age: 25 }] => Output: ['B']
+        // 18. Count how many values > 10
+        // 10 se bade values kitne hain ye count karo.
+        // Input: [5, 12, 18, 7] => Output: 2
+        // 19. Get even numbers and print each one
+        // Even numbers ko filter karo aur unhe console pe print karo.
+        // Input: [1, 2, 3, 4] => Output: console.log 2, 4
+        // 20. Create array of user descriptions
+        // Har user ke name aur age ka string banao format: "Name is Age"
+        // Input: [{ name: 'Sam', age: 30 }, { name: 'Lily', age: 22 }] => Output: ['Sam is 30', 'Lily is 22']
+
+
+        // ==== BONUS QUESTION - TWO SUM (LeetCode Style) ====
+        // Question: // Aapko ek array of integers diya gaya hai aur ek target value. // Aapko do unique indices return karne hain jinke elements ka sum exactly target ke barabar ho. // Assume karo ki ek hi solution hoga, aur ek element ko sirf ek baar use kar sakte ho.
+        // Input: // nums = [2, 7, 11, 15], target = 9
+        // Output: // [0, 1]
+        // Explanation: // nums[0] = 2 aur nums[1] = 7 // 2 + 7 = 9, jo ki target ke barabar hai // Isliye output: [0, 1]
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //         🔶 Question 5: Password Strength Checker
+        //  Create a user object with username and password.
+        //  Check password strength:
+        // Less than 6 characters: "Weak"
+
+
+        // 6–10: "Medium"
+
+
+        // More than 10: "Strong"
+
+        let user = {
+            username: "uday123",
+            password: "abc12345"
+        };
+
+        let passLength = user.password.length;
+        if (passLength < 6) {
+            console.log("Password Strength: Weak");
+        } else if (passLength >= 6 && passLength <= 10) {
+            console.log("Password Strength: Medium");
+        } else {
+            console.log("Password Strength: Strong");
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*Question 4: Age Category Checker
+         Given a person object with name and age, determine if the person is:
+         Child (<13), Teenager (13–19), Adult (20–59), or Senior (60+)
+         Use if-else to display the correct age category.*/
+        const person = {
+            My_name: "Uday solanki",
+            age: 10,
+        };
+        if (person.age >= 60) {
+            console.log("SENIOR");
+        }
+        else if (person.age >= 20) {
+            console.log("Adult")
+        }
+        else if (person.age >= 13) {
+            console.log("Teenager")
+        }
+        else {
+            console.log("child");
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 7. Sort Strings by Length
+        // Input: ["apple", "banana", "kiwi", "grape"]
+        // Output: ["kiwi", "apple", "grape", "banana"]
+        let fruits = ["apple", "banana", "kiwi", "grape"];
+        let newarr = fruits.sort( (a, b)=> {
+            return a.length - b.length;
+        });
+        console.log(newarr); 
+    </script>
+</body>
+
+</html>

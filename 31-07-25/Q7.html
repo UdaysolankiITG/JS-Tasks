@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         .active{
+            background-color: aqua;
+            width: 100%;
+            height: 100%;
+         }
+         .deactive{
+            background-color: black;
+            width: 100%;
+            height: 100%;
+         
+         }
+    </style>
+</head>
+
+<body>
+    <!-- 7. Button se Background Color Change Karna
+    Description: getElementById() se ek button find karo aur uske click par ek div ka background color change karne
+    ke liye event listener add karo. -->
+    <div class="active">
+       <h1>my div</h1>  
+    </div>
+    <button onclick="changebackground()">click</button>
+    <script>
+        function changebackground(){
+            let ele = document.querySelector(".active")
+            ele. setAttribute("class", "deactive");
+        }
+    </script>
+</body>
+</html>

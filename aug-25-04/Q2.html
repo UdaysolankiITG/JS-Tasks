@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ <style>
+    .passcontain{
+        border:1px solid black;
+        width:200px;
+  
+    }
+    input{
+        border: none;
+        outline: none;
+    }
+    .main{
+        display: flex;
+    }
+ </style>
+
+</head>
+<body>
+    <div class="main">
+    <label for="pass">Password</label>: 
+    <div class="passcontain">
+     <input id="pass" type="password" required ><span ><i id="icon" onclick="show()" class="fa-solid fa-eye-slash"></i></span>
+    </div>
+    </div>
+    <script>
+        function show(){
+            
+            let ele = document.getElementById("pass");
+            ele.setAttribute("type","text")
+            let res = document.getElementById("icon");
+            res.setAttribute("class","fa-solid fa-eye")
+        }
+
+      
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Change Paragraph Style</title>
+    <style>
+        p {
+            font-size: 16px;
+            font-weight: normal;
+        }
+    </style>
+</head>
+
+<body>
+
+    <p id="myPara">Yeh ek paragraph hai .</p>
+    <button onclick="changeStyle()">change</button>
+
+    <script>
+        function changeStyle() {
+            let para = document.getElementById("myPara");
+            para.style.fontSize = "24px";
+            para.style.fontWeight = "bold";
+        }
+    </script>
+
+</body>
+
+</html>

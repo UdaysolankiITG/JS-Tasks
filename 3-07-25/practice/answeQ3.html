@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Q3 - create  3 student object with these properties : name ,marks1,marks2, marks3 
+        //  find  the average marks  of each  students by calculating their total marks the store the average marks of each students in array  - called studenyt-marks 
+        const student1 = {
+            studentname: "uday solanki",
+            mark1: 50,
+            mark2: 44,
+            mark3: 60
+        };
+        const student2 = {
+            studentname: "aryan",
+            mark1: 55,
+            mark2: 40,
+            mark3: 56
+        };
+        const student3 = {
+            studentname: "harshit",
+            mark1: 60,
+            mark2: 48,
+            mark3: 70
+        };
+        let averagemarks_1 = (student1.mark1 + student1.mark2 + student1.mark3) / 3;
+        let averagemarks_2 = (student2.mark1 + student2.mark2 + student2.mark3) / 3;
+        let averagemarks_3 = (student3.mark1 + student3.mark2 + student3.mark3) / 3;
+
+        let student_marks = [averagemarks_1, averagemarks_2, averagemarks_3];
+        console.log(
+            ` the store the average marks of each students-1:${averagemarks_1}`, '\n',
+            ` the store the average marks of each students-2:${averagemarks_2}`, '\n',
+            ` the store the average marks of each students-3:${averagemarks_3}`, '\n'
+        );
+    </script>
+</body>
+
+</html>

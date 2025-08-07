@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10th Grade Marksheet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+
+        .container {
+            background: #fff;
+            padding: 30px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .pass {
+            color: green;
+        }
+
+        .fail {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>10th Grade Marksheet</h1>
+
+        <p><strong>Name:</strong> <span id="studentName">Rahul Sharma</span></p>
+        <p><strong>Roll No:</strong> <span id="rollNo">1025</span></p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Marks (out of 100)</th>
+                </tr>
+            </thead>
+            <tbody id="marksBody">
+                <tr>
+                    <td>Math</td>
+                    <td><input type="number" value="85" class="marksInput"></td>
+                </tr>
+                <tr>
+                    <td>Science</td>
+                    <td><input type="text" value="78" class="marksInput"></td>
+                </tr>
+                <tr>
+                    <td>English</td>
+                    <td><input type="number" value="90" class="marksInput"></td>
+                </tr>
+                <tr>
+                    <td>Hindi</td>
+                    <td><input type="number" value="88" class="marksInput"></td>
+                </tr>
+                <tr>
+                    <td>Social Science</td>
+                    <td><input type="number" value="82" class="marksInput"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="btn" onclick="calculateResult()">Calculate Result</button>
+        <button class="btn" onclick="window.print()">Print Marksheet</button>
+
+        <div class="result" id="resultDisplay"></div>
+    </div>
+
+    <script>
+        function calculateResult() {
+            const inputs = document.querySelectorAll('.marksInput');
+            let total = 0;
+            let maxTotal = inputs.length * 100;
+            let passedAll = true;
+
+            inputs.forEach(input => {
+                const mark = parseInt(input.value);
+                if (mark < 33) passedAll = false;
+                total += mark;
+            });
+
+            const percentage = (total / maxTotal) * 100;
+            const resultText = `
+        Total Marks: ${total}/${maxTotal}<br>
+        Percentage: ${percentage.toFixed(2)}%<br>
+        Result: <span class="${passedAll ? 'pass' : 'fail'}">${passedAll ? 'PASS' : 'FAIL'}</span>
+      `;
+
+            document.getElementById('resultDisplay').innerHTML = resultText;
+        }
+    </script>
+</body>
+
+</html>
