@@ -13,13 +13,14 @@ Click hone ke baad us button ka click event listener remove kar do taaki button 
     <button id="clickButton">Click Me</button>
 
     <script>
-        const button = document.getElementById('clickButton');
-        function Click() {
-            alert('Button Clicked!');
-            button.removeEventListener('click', Click);
-        }
-        button.addEventListener('click', Click);
-    </script>
+       const btn = document.getElementById("clickButton");
+       function click(){
+        alert("Button clicked!");
+        btn.removeEventListener("click",click)
+       }
+      btn.addEventListener("click",click) 
+
+     </script>
 
 </body>
 </html>
