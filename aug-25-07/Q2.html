@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main{
+            background-color: aqua;
+            width:500px;
+            height: 500px;
+           margin: auto;
+        }
+    </style>
+</head>
+<body>
+       <!-- Mouse Over se Background Color Badlo
+ Ek div par mouse le jaane par uska background color change ho jaye, 
+ aur mouse hatate hi wapas original ho jaye. -->
+ <div class="main">
+  
+ </div>
+ <script>
+    let ele = document.querySelector(".main");
+    ele.addEventListener("mouseover",change);
+    ele.addEventListener("mouseout",unchange)
+    function change() {
+        ele.style.backgroundColor ="red";   
+    }
+    function unchange() {
+        ele.style.backgroundColor ="aqua";  
+    }
+ </script>
+</body>
+</html>

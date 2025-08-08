@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Task 3: Button Disable After Click
+Goal: Button ko ek baar click hone par disable karna hai.
+Steps:Ek button create karo jiska label ho "Click Me".
+Jab user button ko click kare, tab us button ko disable kar dena hai (using disabled property). -->
+ <button id="click">Click</button>
+ <script>
+    let btn = document.getElementById("click");
+    btn.addEventListener("click",()=>{
+        btn.disabled= true;
+    })
+ </script>
+</body>
+</html>

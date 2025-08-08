@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Task 7: Dynamic Event Listener (Event Delegation)
+Goal: Dynamically added buttons par event listener apply karna hai.
+Steps:Ek div container create karo, aur us container mein addEventListener use karte hue har naye button 
+par click event add karo.
+Jab bhi user naye button pe click kare, ek message show ho "Button {button index} clicked!" (index of button). -->
+
+<div id="button-container"></div>
+
+<button id="add-button">Add New Button</button>
+
+<script>
+  const container = document.getElementById("button-container");
+  const addButton = document.getElementById("add-button");
+  let buttonCount = 0;
+  addButton.addEventListener("click", () => {
+    buttonCount++;
+    const newBtn = document.createElement("button");
+    newBtn.innerText = "Button " + buttonCount;
+    container.appendChild(newBtn);
+    newBtn.addEventListener("click" , ()=>{
+       alert(`clicked!  ${newBtn.innerText}`)
+    })
+  });
+
+</script>
+</body>
+</html>

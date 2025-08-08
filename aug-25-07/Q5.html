@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student registration form</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 7px;
+        }
+
+        fieldset {
+            display: inline-block;
+            margin: auto;
+            width: 60%;
+            border: none;
+            background-color: aqua;
+
+        }
+
+        label {
+            display: inline-block;
+            width: 20%;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+        }
+
+        .heading {
+            display: flex;
+            justify-content: center;
+        }
+
+        .button {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            margin: 5px;
+        }
+
+        .sn {
+            display: flex;
+            width: 100%;
+
+        }
+
+        textarea {
+            width: 55%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Form Submit Hone Par Alert Dikhao
+ Ek simple form banao jisme naam input ho.
+  Submit karne pe alert aaye: "Hello [naam]!" -->
+
+    <!------------------------------- form stars here-------------------------------------->
+    <form id="isForm">
+        <div class="main">
+            <fieldset>
+                <!---------------------------------require content------------------------------------->
+                <div class="heading">
+                    <h1>Student Registration Form</h1>
+                </div>
+                <div>
+                    <label for="roll">Roll no.</label>:
+                    <input id="roll" type="text" name="roll" size="40" />
+                </div>
+                <div class="sn">
+                    <label for="Sname">Student name</label>:
+
+                    <input id="Sname" type="text" name="Sname" placeholder="first name" size="20">
+                    
+                </div>
+                <div>
+                    <label for="fname">Father's name </label>:
+                    <input id="fname" type="text" name="fname" size="40">
+                </div>
+               
+                <div class="button">
+                    <button class="submit">submit</button>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+    <script>
+        let nameVal = document.getElementById("Sname");
+       document.getElementById("isForm").addEventListener("submit" , (e) => {
+             e.preventDefault();
+             alert(`Hello! ${nameVal.value}`)
+
+       })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<!-- Task 4: Remove Event Listener
+Goal: Button click hone ke baad uska event listener remove karna hai.
+Steps:Ek button banao jiska label ho "Click Me".
+Jab button click ho, ek alert show karo "Button Clicked!".
+Click hone ke baad us button ka click event listener remove kar do taaki button phir se click na ho sake. -->
+    <button id="clickButton">Click Me</button>
+
+    <script>
+        const button = document.getElementById('clickButton');
+        function Click() {
+            alert('Button Clicked!');
+            button.removeEventListener('click', Click);
+        }
+        button.addEventListener('click', Click);
+    </script>
+
+</body>
+</html>

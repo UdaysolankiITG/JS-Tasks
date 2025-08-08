@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Task 1: Delayed Message
+Goal: Tumhe ek message ko 5 seconds ke baad show karna hai.
+Steps:
+Ek button banao jiska label ho "Show Message".
+Jab user button ko click kare, tab setTimeout use karke 5 seconds ke baad ek alert show karo jisme likha ho
+: "Message shown after 5 seconds!". -->
+
+   <button id="click">Click</button>
+   <script>
+        let btn = document.getElementById("click");
+        btn.addEventListener("click",()=>{
+            setTimeout(() => {
+                 alert("Message shown after 5 seconds!");
+            }, 5000);
+        })
+   </script>
+</body>
+</html>

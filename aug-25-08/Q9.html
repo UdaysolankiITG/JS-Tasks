@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Task 9: Timer with Timeout and Interval
+Goal: Tumhe ek timer create karna hai jo ek timeout aur interval dono use kare.
+Steps:Ek button banao jiska label ho "Start Timer".
+Jab button pe click ho, setTimeout se 5 seconds baad ek alert show karo "5 seconds are over!".
+Uske baad setInterval use karo taaki har 1 second mein ek countdown display ho jo 5 seconds se 0 seconds tak aaye. Jab countdown khatam ho, 
+interval ko clearInterval se stop kar dena. -->
+ <button id="startBtn">Start Timer</button>
+  <p id="countdownText"></p>
+
+  <script>
+    const startBtn = document.getElementById('startBtn');
+    const countdownText = document.getElementById('countdownText');
+
+    startBtn.addEventListener('click', () => {
+      startBtn.disabled = true;
+      setTimeout(() => {
+        alert("5 seconds are over!");
+        let count = 5;
+        countdownText.textContent = `Countdown: ${count}`;
+        const interval = setInterval(() => {
+          count--;
+          countdownText.textContent = `Countdown: ${count}`;
+          if (count === 0) {
+            clearInterval(interval);
+            startBtn.disabled = false;
+          }
+        }, 1000);
+      }, 5000);
+    });
+  </script>
+
+</body>
+</html>

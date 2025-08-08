@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Task 6: Multiple Events on One Element
+Goal: Ek button pe do events handle karne hai: click aur mouseover.
+Steps:Ek button banao jiska label ho "Hover or Click Me".
+addEventListener ka use karo taaki jab user button pe mouse hover kare toh ek message show ho jaaye "Mouse Over!", aur jab click kare toh "Button Clicked!" show ho.
+Dono events ko alag alag messages show karte waqt handle karo. -->
+
+
+    <button id="btn">Hover or Click Me</button>
+
+    <script>
+        const button = document.getElementById("btn");
+        button.addEventListener("mouseover", ()=>{
+            alert("Mouse Over!");
+        });
+
+        button.addEventListener("click", ()=>{
+            alert("Button Clicked!");
+        });
+    </script>
+</body>
+</html>

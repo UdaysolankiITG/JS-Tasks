@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Task 2: Interval for Color Change
+Goal: Tumhe page ka background color har 1 second ke baad change karna hai.
+Steps:setInterval use karo aur har 1 second ke interval par page ka background color randomly change karo.
+Is change ko 10 seconds tak run karo aur fir clearInterval se stop kar do. -->
+
+    <script>
+        const randomColor = () => {
+         const colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'pink'];
+        return colors[Math.floor(Math.random() * colors.length)];
+        }
+      setInterval(() => {
+          document.body.style.backgroundColor = randomColor();
+      }, 1000);
+      
+    </script>
+</body>
+
+</html>

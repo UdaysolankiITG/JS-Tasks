@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Task 8: Stop Interval After Certain Condition
+Goal: Tumhe ek interval start karna hai, aur usko kuch condition par stop karna hai.
+Steps:setInterval se page ka background color har 1 second mein change karo.
+5 seconds ke baad, agar background color red ho gaya ho toh interval ko clearInterval se stop kar do. -->
+
+
+<script>
+
+    function getRandomColor() {
+        const colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'pink'];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    let interval = setInterval(() => {
+        const newColor = getRandomColor();
+        document.body.style.backgroundColor = newColor;
+    }, 1000);
+
+   
+    setTimeout(() => {
+        if (document.body.style.backgroundColor === 'red') {
+            clearInterval(interval);}
+    }, 5000);
+ </script>
+</body>
+</html>

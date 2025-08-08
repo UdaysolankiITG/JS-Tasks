@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    body {
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <label>
+    Change Background Color:
+  </label>
+ <input type="checkbox" id="bgToggle">
+  <script>
+    const checkbox = document.getElementById('bgToggle');
+
+    checkbox.addEventListener('change',()=>{
+      if (checkbox.checked) {
+        document.body.style.backgroundColor = 'green';
+      } else {
+        document.body.style.backgroundColor = 'white';
+      }
+    });
+  </script>
+
+</body>
+</html>

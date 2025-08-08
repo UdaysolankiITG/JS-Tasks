@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stopwatch</title>
+  <style>
+    .main{
+     margin :auto;
+     background-color: aqua;
+     color: bisque;
+      text-align: center;
+      font-family: sans-serif;
+      margin-top: 100px;
+      border: 1px solid black;
+      width: 50%;
+      border-radius: 50px;
+    }
+
+    #time {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    button {
+     border-radius: 30px;
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+ <div class="main">  
+    <h1>Stopwatch</h1>
+  <div id="time">00:00</div>
+  <button onclick="start()">Start</button>
+  <button onclick="stop()">Stop</button>
+  <button onclick="reset()">Reset</button>
+</div>
+
+  <script>
+    let seconds = 0;
+    let minutes = 0;
+    let timer = null;
+
+    function updateTime() {
+      seconds++;
+      if (seconds === 60) {
+        seconds = 0;
+        minutes++;
+      }
+
+      let min = minutes < 10 ? "0" + minutes : minutes;
+      let sec = seconds < 10 ? "0" + seconds : seconds;
+
+      document.getElementById("time").innerText = min + ":" + sec;
+    }
+
+    function start() {
+      if (timer === null) {
+        timer = setInterval(updateTime, 1000);
+      }
+    }
+
+    function stop() {
+      clearInterval(timer);
+      timer = null;
+    }
+
+    function reset() {
+      stop();
+      minutes = 0;
+      seconds = 0;
+      document.getElementById("time").innerText = "00:00";
+    }
+  </script>
+
+</body>
+</html>

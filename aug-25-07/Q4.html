@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Double Click se Font Size Badhayein
+ Ek text element ho jo double-click karne par uska font size bada ho jaye. -->
+  <p class="text">The ultimate Javascript.</p>
+  <script>
+    let ele = document.querySelector(".text")
+    ele.addEventListener("dblclick",fontTest);
+    ele.addEventListener("ondblclick",font);
+
+   function fontTest(){
+    ele.style.fontSize = "40px";
+   }
+function font(){
+    ele.style.fontSize = "small";
+   }
+
+  </script>
+</body>
+</html>

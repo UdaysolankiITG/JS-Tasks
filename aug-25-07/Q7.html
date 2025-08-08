@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    .image-container {
+      width: 300px;
+      overflow: hidden;
+      margin: 50px auto;
+      border: 2px solid #ccc;
+    }
+
+    img {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="image-container">
+    <img id="zoomImage" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Altja_j%C3%B5gi_Lahemaal.jpg/1200px-Altja_j%C3%B5gi_Lahemaal.jpg" alt=" Image">
+  </div>
+
+  <script>
+    const image = document.getElementById('zoomImage');
+    image.addEventListener('mouseover', function() {
+      image.style.transform = 'scale(1.2)';
+    });
+    image.addEventListener('mouseout', function() {
+      image.style.transform = 'scale(1)';
+    });
+  </script>
+
+</body>
+</html>

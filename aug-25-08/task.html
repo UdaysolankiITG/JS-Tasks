@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>click the circle game </title>
+    <style>
+        .main {
+            margin: auto;
+            border: 1px solid black;
+            width: 460px;
+            height: 200px;
+            padding-top: 20px;
+            position: relative;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #start {
+            display: flex;
+            margin: auto;
+            padding: 10px 10px 10px 10px;
+            text-align: center;
+        }
+
+        #Time {
+            display: flex;
+            justify-content: center;
+        }
+
+        #score {
+            display: flex;
+            justify-content: center;
+        }
+
+        .circle {
+            border-radius: 999px;
+            height: 50px;
+            width: 50px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Click the circle </h1>
+    <button id="start" >Start</button>
+    <p id="score">Score:</p>
+    <p id="Time"></p>
+    <div class="main">
+        <div class="circle"></div>
+    </div>
+    <script>
+        let Btn = document.getElementById("start");
+        let achive = document.getElementById("score");
+        let time = document.getElementById("Time")
+        let div = document.getElementById("main");
+        let circle = document.querySelector(".circle");
+        let score = 0; 
+      
+      
+        Btn.addEventListener("click",position)
+        function position() {
+                 let interval = setInterval(() => {
+                     
+                    Btn.disabled = true;
+                 let position1 = Math.floor(Math.random() * 100);
+                 let position2 = Math.floor(Math.random() * 100);
+                 let position3 = Math.floor(Math.random() * 100);
+            circle.style.left = `${position1}px`;
+            circle.style.top = `${position2}px`;
+            circle.style.bottom = `${position3}px`;
+            },1000);
+            setTimeout(() => {
+                 clearInterval(interval)
+                 alert("game over")
+                 Btn.removeAttribute("disabled")
+            },30000);
+    
+          }
+
+
+    </script>
+</body>
+
+</html>

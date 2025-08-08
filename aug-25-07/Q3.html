@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Input Field Mein Typing Detect Karo
+ Input box banao jo har key press 
+ (keyup) par current text ko ek <p> tag mein live dikhaye. -->
+     <h2>Live Text Preview</h2>
+
+ 
+  <input type="text" id="Input" placeholder="Yahan likho..." />
+  <p id="Text">Yahan text dikhega...</p>
+
+  <script>
+    let input = document.getElementById("Input");
+  let Para = document.getElementById("Text");
+
+    input.addEventListener("keyup", ()=>{
+      Para.textContent = input.value;
+    });
+  </script>
+</body>
+</html>
