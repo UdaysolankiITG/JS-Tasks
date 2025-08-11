@@ -38,6 +38,8 @@
 </div>
 
   <script>
+    let time = document.getElementById("time");
+    let hours = 0;
     let seconds = 0;
     let minutes = 0;
     let timer = null;
@@ -48,11 +50,9 @@
         seconds = 0;
         minutes++;
       }
-
       let min = minutes < 10 ? "0" + minutes : minutes;
       let sec = seconds < 10 ? "0" + seconds : seconds;
-
-      document.getElementById("time").innerText = min + ":" + sec;
+       time.innerText =  min + ":" + sec;
     }
 
     function start() {
@@ -68,9 +68,10 @@
 
     function reset() {
       stop();
+      hours =   0 ;
       minutes = 0;
       seconds = 0;
-      document.getElementById("time").innerText = "00:00";
+      time.innerText = "00:00";
     }
   </script>
 

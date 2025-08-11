@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id = text></p>
+  <script>
+     function  update(text) {
+        document.getElementById("text").innerText = text;
+     }
+    function sum(a,b,callback) {
+        let num = a + b;
+          callback(num);
+    }
+    function table(num) {
+        let box = document.getElementById("text");
+        for (let i = 1; i <= 10; i++) {
+          box.innerText += `${num}  x  ${i}  =  ${num * i}\n`;
+        } 
+    }
+    sum(5,5,table)
+  </script>
+</body>
+</html>
