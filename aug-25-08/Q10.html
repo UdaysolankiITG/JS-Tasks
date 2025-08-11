@@ -31,7 +31,7 @@
 <body>
  <div class="main">  
     <h1>Stopwatch</h1>
-  <div id="time">00:00</div>
+  <div id="time">00:00:00</div>
   <button onclick="start()">Start</button>
   <button onclick="stop()">Stop</button>
   <button onclick="reset()">Reset</button>
@@ -50,9 +50,10 @@
         seconds = 0;
         minutes++;
       }
+      let hrs = hours < 10 ? "0" + hours : hours  ;
       let min = minutes < 10 ? "0" + minutes : minutes;
       let sec = seconds < 10 ? "0" + seconds : seconds;
-       time.innerText =  min + ":" + sec;
+       time.innerText = hrs + ":" + min + ":" + sec;
     }
 
     function start() {
@@ -71,8 +72,18 @@
       hours =   0 ;
       minutes = 0;
       seconds = 0;
-      time.innerText = "00:00";
+      time.innerText = "00:00:00";
     }
+   document.addEventListener("keydown", (event) =>{
+      const key = event.key.toLowerCase();
+      if (key === "s" ) {
+        start();
+      } else if (key === "t") {
+        stop();
+      } else if (key === "r") {
+        reset();
+      }
+    });
   </script>
 
 </body>
