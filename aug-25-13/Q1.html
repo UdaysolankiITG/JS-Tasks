@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<!-- // 1️⃣ Simple Promise:
+// Ek Promise banao jo 1 second baad resolve ho aur "Hello from Promise" return kare -->
+<script>
+    const myPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("Hello from Promise");
+  }, 1000);
+});
+
+myPromise.then((message) => {
+  console.log(message);
+});
+
+</script>
+</body>
+</html>

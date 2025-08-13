@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" id="exampleForm">
+        <input name="fname" class="formINput" type="text">
+        <input name="lname" class="formINput" type="text">
+        <input name="email" class="formINput" type="text">
+        <input name="password" class="formINput" type="text">
+        <input name="number" type="text" class="formINput">
+        <button id="submitBtn" type="submit">Submit</button>
+    </form>
+
+    <script>
+        const exampleForm = document.getElementById("exampleForm");
+        const inputs = exampleForm.getElementsByClassName("formINput");
+        const submtBtn = document.getElementById("submitBtn");
+        const formData = {};
+       // submtBtn.disabled = true; 
+
+        function handleRequired(obj) {
+            for(let key in obj){
+                console.log(key)
+            }
+            // if (value.length !== 0) {
+            //       submtBtn.disabled = false;
+            //       return true;
+            // }
+            // return false;
+        }
+
+        function addData(obj, key, value) {
+            obj[key] = value;
+            return obj
+        }
+
+        function handleInputChange(e) {
+            const value = e.target.value.trim();
+            const name = e.target.name;
+            addData(formData, name, value)
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            if(handleRequired(formData)){
+
+            }
+             
+            console.log(formData)
+        }
+
+        Array.from(inputs).forEach((input) => {
+            input.addEventListener("input", handleInputChange, event)
+        })
+
+        exampleForm.addEventListener("submit", handleFormSubmit, event)
+    </script>
+</body>
+
+</html>
