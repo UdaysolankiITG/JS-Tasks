@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>document</title>
+</head>
+
+<body>
+    <!-- 
+ 1. Name Validation
+ Write a function to validate a user's name.
+ The name should contain only alphabetic characters (a–z or A–Z) and spaces, 
+ and it must be at least 2 characters long. -->
+
+    <h2>Enter Your Name:</h2>
+    <input type="text" id="nameInput" />
+    <button onclick="checkName()">Check Name</button>
+    <script>
+        function isValidName(name) {
+            name = name.trim();
+
+            if (name.length < 2) {
+                return false;
+            }
+
+            for (let i = 0; i < name.length; i++) {
+                let char = name[i];
+                if (
+                    !(char >= 'A' && char <= 'Z') &&
+                    !(char >= 'a' && char <= 'z') &&
+                    char !== ' '
+                ) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        function checkName() {
+            let name = document.getElementById("nameInput").value;
+            let result = document.getElementById("result");
+
+            if (isValidName(name)) {
+                console.log("valid name")
+            } else {
+                console.log("invalid name")
+            }
+        }
+    </script>
+
+</body>
+
+</html>

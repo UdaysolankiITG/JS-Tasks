@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const promiseone = new Promise(function(resolve,reject) {
+        //     setTimeout(() => {
+        //         let error = false;
+        //         if(!error){
+        //             resolve({username :"uday"})
+        //         }
+        //         else{
+        //             reject('it is wrong')
+        //         }
+        //     }, 1000);
+
+        // })
+        // promiseone.then((user)=>{
+        //     console.log(user);}).catch((error)=>{
+        //     console.log(error)
+        // })
+        fetch("https://dummyjson.com/products").then((response) => {
+            let data = response.json()
+            return data;
+        }).then((data) => {
+            let rev = data.products[0].reviews;
+            return rev;
+        }).then((rev) => {
+            console.log(rev)
+            return rev;
+        }).catch((error) => {
+            console.error("There was a problem with the fetch operation:", error);
+        });
+    </script>
+</body>
+
+</html>

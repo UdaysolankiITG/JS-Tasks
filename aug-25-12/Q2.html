@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>document</title>
+</head>
+<body>
+ <!-- 2. Mobile Number Validation
+ Write a function to validate a mobile number. 
+
+ The number should be exactly 10 digits and should not start with 0. -->
+
+  <h2>Enter Mobile Number:</h2>
+  <input type="text" id="mobileInput" />
+  <button onclick="validateMobile()">Validate</button>
+  <script>
+    function validateMobile() {
+      let number = document.getElementById("mobileInput").value;
+      let message = document.getElementById("message");
+      number = number.trim();
+      if (number.length !== 10) {
+        console.log("only 10 digit ")
+        return;
+      }
+      for (let i = 0; i < number.length; i++) {
+        if (number[i] < '0' || number[i] > '9') {
+          console.log("only digit are alloweed")
+          return;
+        }
+      }
+      if (number[0] === '0') {
+        console.log("number must not start with 0")
+        return;
+      }
+      console.log("valid number ")
+    }
+  </script>
+
+</body>
+</html>

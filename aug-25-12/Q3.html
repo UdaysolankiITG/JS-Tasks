@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>document</title>
+</head>
+<body>
+<!-- 3. Email Validation
+Write a function to validate an email address.
+ It should follow the pattern username@domain.com. -->
+
+  <h2>Enter Email Address:</h2>
+
+  <input type="text" id="emailInput" placeholder="example@domain.com" />
+  <button onclick="validateEmail()">Validate</button>
+
+
+  <script>
+    function isValidEmail(email) {
+      email = email.trim();
+     let parts = email.split("@");
+      if (parts.length !== 2) {
+        return false;
+      }
+
+     let username = parts[0];
+     let domain = parts[1];
+
+      if (username.length === 0 || domain.length === 0) {
+        return false;
+      }
+
+      if (domain.indexOf(".") === -1) {
+        return false;
+      }
+
+      if (domain.startsWith(".") || domain.endsWith(".")) {
+        return false;
+      }
+
+      return true;
+    }
+
+    function validateEmail() {
+      let email = document.getElementById("emailInput").value;
+      let message = document.getElementById("message");
+
+      if (isValidEmail(email)) {
+      console.log("valid email")
+      } else {
+       console.log("invalid email")
+      }
+    }
+  </script>
+
+</body>
+</html>

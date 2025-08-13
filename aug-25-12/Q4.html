@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>document</title>
+</head>
+<body>
+<!-- // 4. Password Validation
+// Write a function to validate a password with the following rules:
+// - Minimum 8 characters
+// - At least one uppercase letter
+// - At least one lowercase letter
+// - At least one digit
+// - At least one special character -->
+
+  <h2>Create Password:</h2>
+  <input type="password" id="passwordInput" placeholder="Enter password" />
+  <button onclick="validatePassword()">Validate</button>
+
+ 
+
+  <script>
+    function isValidPassword(password) {
+      if (password.length < 8) {
+        return false;
+      }
+
+      let hasUpper = false;
+      let hasLower = false;
+      let hasDigit = false;
+      let hasSpecial = false;
+
+      for (let i = 0; i < password.length; i++) {
+       let char = password[i];
+
+        if (char >= 'A' && char <= 'Z') {
+          hasUpper = true;
+        } else if (char >= 'a' && char <= 'z') {
+          hasLower = true;
+        } else if (char >= '0' && char <= '9') {
+          hasDigit = true;
+        } else {
+          hasSpecial = true;
+        }
+      }
+
+      return hasUpper && hasLower && hasDigit && hasSpecial;
+    }
+
+    function validatePassword() {
+      var password = document.getElementById("passwordInput").value;
+      var message = document.getElementById("message");
+
+      if (isValidPassword(password)) {
+     console.log("valid pass")
+     
+      } else {
+          console.log("invalid pass")
+      }
+    }
+  </script>
+
+</body>
+</html>
