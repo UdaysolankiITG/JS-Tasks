@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- // 7️⃣ Promise.all():
+// Do Promises ko parallel mein run karo aur dono results ko ek saath print karo -->
+
+
+    <script>
+
+        function taskOne() {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve("Task One Complete");
+                }, 2000); 
+            });
+        }
+
+ 
+        function taskTwo() {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve("Task Two Complete");
+                }, 1000); 
+            });
+        }
+
+        Promise.all([taskOne(), taskTwo()])
+            .then(results => {
+                console.log("All tasks done!");
+                console.log("Results:", results);
+            })
+            .catch(err => {
+                console.error("Error in one of the tasks:", err);
+            });
+    </script>
+</body>
+
+</html>

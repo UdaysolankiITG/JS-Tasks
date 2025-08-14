@@ -1,205 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
+const shopItems = [
+  { name: "Slim Fit Jeans", category: "Men", type: "jeans", price: 1200 },
+  { name: "Casual T-shirt", category: "Men", type: "tshirt", price: 600 },
+  { name: "Formal Shirt", category: "Men", type: "shirt", price: 1100 },
+  { name: "Track Pant", category: "Men", type: "pant", price: 900 },
+  { name: "Printed T-shirt", category: "Women", type: "tshirt", price: 750 },
+  { name: "Denim Jeans", category: "Women", type: "jeans", price: 1500 },
+  { name: "Combo Pack", category: "Men", type: "mix", price: 2000 },
+  { name: "Kids Shorts", category: "Kids", type: "pant", price: 500 },
+  { name: "Girls Frock", category: "Kids", type: "mix", price: 800 },
+  { name: "Oversized Hoodie", category: "Women", type: "tshirt", price: 1300 },
+  { name: "Cargo Pants", category: "Men", type: "pant", price: 1400 },
+  { name: "Polka Dot Shirt", category: "Women", type: "shirt", price: 1000 },
+  { name: "Running Shorts", category: "Men", type: "pant", price: 800 },
+  { name: "Ankle Jeans", category: "Women", type: "jeans", price: 1600 },
+  { name: "Winter Combo", category: "Women", type: "mix", price: 2200 },
+  { name: "Boys T-shirt", category: "Kids", type: "tshirt", price: 450 },
+  { name: "School Uniform", category: "Kids", type: "shirt", price: 950 },
+  { name: "Ethnic Set", category: "Women", type: "mix", price: 1800 },
+  { name: "Linen Shirt", category: "Men", type: "shirt", price: 1250 },
+  { name: "Gym Wear Pack", category: "Men", type: "mix", price: 2400 },
+];
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Validation</title>
-</head>
+const categories = document.getElementById("categories");
+const types = document.getElementById("types");
+const container = document.querySelector(".container");
+const searchInput = document.querySelector("#searchInput");
 
-<body>
-    <form action="" id="exampleForm">
-        <input name="fname" class="formINput" type="text" placeholder="First Name">
-        <input name="lname" class="formINput" type="text" placeholder="Last Name">
-        <input name="email" class="formINput" type="text" placeholder="Email">
-        <input name="password" class="formINput" type="text" placeholder="Password">
-        <input name="number" class="formINput" type="text" placeholder="Number">
-        <button id="submitBtn" type="submit" disabled>Submit</button>
-    </form>
+function updateItmes(items) {
+  container.innerHTML = "";
 
-    <script>
-        const exampleForm = document.getElementById("exampleForm");
-        const inputs = exampleForm.getElementsByClassName("formINput");
-        const submitBtn = document.getElementById("submitBtn");
+  if (items.length !== 0) {
+    items.forEach((item) => {
+      container.innerHTML += `
+             <div class="card">
+               <p>Title : ${item.name}</p>
+               <p>category : ${item.category}</p>
+               <p>type : ${item.type}</p>
+               <p>price :${item.price}</p>
+             </div>
+          `;
+    });
+  } else {
+    container.innerHTML = "<p>product not found</p>";
+  }
+}
 
-        const formData = {};
-        let checkTowChar = false;
-        let isValid = true;
-        function addData(obj, key, value) {
-            obj[key] = value;
-        }
+let filterItems = shopItems;
 
-        function validateForm() {
+// categories Change function
+function handleCategoriesChange() {
+  filterItems = shopItems.filter((item) => {
+    if (categories.value === "all-categories") {
+      return true;
+    }
+    if (categories.value === item.category) return true;
+    return false;
+  });
 
-            
-            Array.from(inputs).forEach(input => {
-                if (input.value.trim() === "") {
-                    isValid = false;
-                }
-            });
+  updateItmes(filterItems);
+}
 
+// types change function
 
-            submitBtn.disabled = !isValid;
-        }
+function handleTypeChange() {
+  let filterTypes = filterItems.filter((item) => {
+    console.log("hello");
+    if (types.value === "all-type") {
+      return true;
+    }
+    if (types.value === item.type) return true;
+    return false;
+  });
+  updateItmes(filterTypes);
+}
 
-        function atleastTwoChar(value) {  
-            if (value.length == 2) {
-                alert("Enter atleast 2 char name !!")
-                
-                return false;
-            }
-            
-            return true;
+// search itmes
 
-        }
+function handleSearchChange(e) {
+  let inputValue = e.target.value.toLowerCase().trim();
 
-        function handleInputChange(e) {
-            const value = e.target.value.trim();
-            const name = e.target.name;
-            addData(formData, name, value);
+  let searchItems = filterItems.filter((item) => {
+    if (
+      item.name.toLowerCase().includes(inputValue) ||
+      item.category.toLowerCase().includes(inputValue) ||
+      item.type.toLowerCase().includes(inputValue)
+    ) {
+      console.log("hello");
+      return true;
+    }
 
-          checkTowChar =  validateForm();
-            atleastTwoChar(value)
-        }
-
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            if (!submitBtn.disabled && checkTowChar) {
-                console.log("Form Submitted:", formData);
-
-            }
-        }
-
-
-        Array.from(inputs).forEach((input) => {
-            input.addEventListener("change", handleInputChange , event);
-        });
-
-        exampleForm.addEventListener("submit", handleFormSubmit);
-
-        //         //----------------------------------string check karne ke liye ----------------------------------------
-
-
-
-        // //----------------------------------------spacing ke liye ----------------------------------------------
-
-
-
-        // //------------------------------------------ conatin atleast 2 char -----------------------------------
-
-
-
-        // //------------------------------------------character --------------------------------------------------
-
-        // function startWithChar(value) {
-        //     let firstchar = value[0];
-        //     if ((firstchar >= "a" && firstchar <= "z") || (firstchar >= "A" && firstchar <= "Z")) {
-        //         return true;
-        //     }
-        //     else {
-        //         alert("Enter valid name !!")
-        //     }
-        // }
-
-        // //-------------------------------------------gmail check-----------------------------------------------------
-
-        // function checkValidGmail(email) {
-        //     if (!email.includes("@")) {
-        //         alert("Enter gmail in proper format!!");
-        //         return false;
-        //     }
-        //     let indexOfAt = email.indexOf("@");
-        //     if (email.slice(indexOfAt).length < 2) {
-        //         alert("Enter valid email");
-        //         return false;
-        //     }
-
-        //     return true;
-        // }
-
-        // //-------------------------------------------- password check ----------------------------------------------------
-        // //-------------------------------------------- condition ---------------------------------------------------------
-        // //-------------------------------------------- Upper-Case ke liye function --------------------------------------
-        // function isUpperCase(char) {
-        //     if (char >= "A" && char <= "Z") {
-        //         return true;
-        //     }
-        //     return false;
-        // }
-
-        // //------------------------------------------- Lower-case ke liye condition ---------------------------------------
-
-        // function isLowerCase(char) {
-        //     if (char >= "a" && char <= "z") {
-        //         return true;
-        //     }
-        //     return false;
-        // }
-
-        // //--------------------------------------------- Digit ke liye ----------------------------------------------------
-
-        // function isDIgit(char) {
-        //     if (char >= '0' && char <= '9') {
-        //         return true;
-        //     }
-        //     return false;
-        // }
-
-        // //------------------------------------------- checkPassword ------------------------------------------------------
-
-        // function checkPassword(password) {
-        //     let leng = password.length <= 8;
-        //     let upper = false;
-        //     let lower = false;
-        //     let digit = false;
-
-        //     for (let char of password) {
-        //         if (isUpperCase(char)) {
-        //             upper = true;
-        //         }
-
-        //         else if (isLowerCase(char)) {
-        //             lower = true;
-        //         }
-
-        //         else if (isDIgit(char)) {
-        //             digit = true;
-        //         }
-
-        //     }
-        //     if (upper && lower && digit) {
-        //         return true;
-        //     }
-        //     else {
-        //         alert("Enter one upper-case char , one lower-case char , one number!!")
-        //         return false;
-        //     }
-
-        // }
-        // //--------------------------------------------------------- CONDITION ADD ----------------------------------------------------
-
-        // //------------------------ form ko get kiya or usko relod hone se rokne ke liye condition lagai -------------------------------
-        // let form = document.getElementById("formBox")
-        // form.addEventListener("click", function (event) {
-        //     event.preventDefault();
-
-        //     let inputs = document.getElementsByTagName("input");
-        //     let formData = {};
-        //     Array.from(inputs).forEach(element => {
-
-        //         formData[element.name] = element.value;
-        //     });
-        //     console.log(formData)
-        //     ObjectFunction()
+    return false;
+  });
+  updateItmes(searchItems);
+}
 
 
-        // })
-        // function ObjectFunction(obj, key, value) {
-        //     obj[key] = value;
-        //     return obj
 
-        // }
-    </script>
-</body>
+categories.addEventListener("change", handleCategoriesChange);
 
-</html>
+types.addEventListener("change", handleTypeChange);
+
+searchInput.addEventListener("input", handleSearchChange, event);
+
+updateItmes(shopItems);

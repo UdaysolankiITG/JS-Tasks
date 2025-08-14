@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- // 8️⃣ Reject and .catch():
+// Ek Promise ko manually reject karo aur dekho .catch() mein kya print hota hai -->
+
+
+    <script>
+        const myPromise = new Promise((resolve, reject) => {
+            reject("Something went wrong!");
+        });
+
+        myPromise
+            .then(result => {
+                console.log("Result:", result);
+            })
+            .catch(error => {
+                console.error("Caught Error:", error);
+            });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    
+<!-- // 9️⃣ Random Resolve/Reject:
+// Ek random number generate karo – agar > 0.5 ho to resolve, warna reject karo -->
+
+    <script>
+        const randomPromise = new Promise((resolve, reject) => {
+            const num = Math.random();
+            console.log("Random Number:", num);
+
+            if (num > 0.5) {
+                resolve("Success! Number is greater than 0.5");
+            } else {
+                reject(" Failed! Number is 0.5 or less");
+            }
+        });
+
+
+        randomPromise
+            .then(result => {
+                console.log("Resolved:", result);
+            })
+            .catch(error => {
+                console.error("Rejected:", error);
+            });
+    </script>
+</body>
+
+</html>

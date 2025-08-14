@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- // 4️⃣ Error Handling:
+// Ek Promise banao jo reject kare, aur error ko .catch() se handle karo -->
+
+    <script>
+let myPromise = new Promise(function(resolve, reject) {
+    let success = false;
+
+    if (success) {
+        resolve("Data mil gaya ✅");
+    } else {
+        reject("Error aayi ❌");
+    }
+});
+
+myPromise
+    .then(function(result) {
+        console.log(result);
+    })
+    .catch(function(error) {
+        console.log("Handled error:", error);
+    });
+    </script>
+</body>
+</html>

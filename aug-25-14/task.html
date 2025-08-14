@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .container {
+            display: grid;
+            column-gap: 50px;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        }
+
+        h1 {
+            text-align: center;
+
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        .dropdown {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .option {
+            border-radius: 5px;
+            width: 15%;
+            padding: 10px;
+            margin: 10px;
+        }
+         .para{
+            margin:auto;
+            display: flex;
+            text-align: center;
+         }
+        .card {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+            width: 120px;
+            height: 150px;
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Shop Item Filter</h1>
+    <div class="dropdown">
+        <select class="option" id="categories">
+            <option value="categories">All Categories</option>
+            <option value="Men">Men</option>
+            <option value="Women">Women</option>
+            <option value="Kids">Kid</option>
+        </select>
+        <select class="option" id="types">
+            <option value="types">All Types</option>
+            <option value="jeans">Jeans</option>
+            <option value="tshirt">T-shirt</option>
+            <option value="shirt">Shirt</option>
+            <option value="pant">Pant</option>
+            <option value="mix">Mix</option>
+        </select>
+    </div>
+    <div class="container">
+
+    </div>
+
+    <script>
+        const shopItems = [
+            { name: "Slim Fit Jeans", category: "Men", type: "jeans", price: 1200 },
+            { name: "Casual T-shirt", category: "Men", type: "tshirt", price: 600 },
+            { name: "Formal Shirt", category: "Men", type: "shirt", price: 1100 },
+            { name: "Track Pant", category: "Men", type: "pant", price: 900 },
+            { name: "Printed T-shirt", category: "Women", type: "tshirt", price: 750 },
+            { name: "Denim Jeans", category: "Women", type: "jeans", price: 1500 },
+            { name: "Combo Pack", category: "Men", type: "mix", price: 2000 },
+            { name: "Kids Shorts", category: "Kids", type: "pant", price: 500 },
+            { name: "Girls Frock", category: "Kids", type: "mix", price: 800 },
+            { name: "Oversized Hoodie", category: "Women", type: "tshirt", price: 1300 },
+            { name: "Cargo Pants", category: "Men", type: "pant", price: 1400 },
+            { name: "Polka Dot Shirt", category: "Women", type: "shirt", price: 1000 },
+            { name: "Running Shorts", category: "Men", type: "pant", price: 800 },
+            { name: "Ankle Jeans", category: "Women", type: "jeans", price: 1600 },
+            { name: "Winter Combo", category: "Women", type: "mix", price: 2200 },
+            { name: "Boys T-shirt", category: "Kids", type: "tshirt", price: 450 },
+            { name: "School Uniform", category: "Kids", type: "shirt", price: 950 },
+            { name: "Ethnic Set", category: "Women", type: "mix", price: 1800 },
+            { name: "Linen Shirt", category: "Men", type: "shirt", price: 1250 },
+            { name: "Gym Wear Pack", category: "Men", type: "mix", price: 2400 },
+        ];
+
+
+
+        let categories = document.getElementById("categories");
+        let types = document.getElementById("types");
+        
+        let container = document.querySelector(".container");
+
+
+        function updateItems(items) {
+            container.innerHTML = "";
+            if (items.length > 0) {
+                for (let i = 0; i < items.length; i++) {
+                    let item = items[i];
+                    container.innerHTML += `
+        <div class="card">
+          <h3>Title: ${item.name}</h3>
+          <p>Category: ${item.category}</p>
+          <p>Type: ${item.type}</p>
+          <p>Price: ${item.price}</p>
+        </div>
+      `;
+                }
+            } else {0
+
+                container.innerHTML = `<div class="para"> <p>Product not found</p> </div>`;
+            }
+        }
+
+        let filteredItems = shopItems;
+
+
+        function onCategoryChange() {
+
+            let selectedCategory = categories.value;
+            filteredItems = shopItems.filter((item) => {
+                if (selectedCategory === "categories") {
+                    return true;
+                }
+                return item.category === selectedCategory;
+            });
+            updateItems(filteredItems);
+        }
+
+        function onTypeChange() {
+            let selectedType = types.value;
+
+            let finalItems = filteredItems.filter((item) => {
+                if (selectedType === "all-type") {
+                    return true;
+                }
+
+                return item.type === selectedType;
+            });
+
+
+            updateItems(finalItems);
+        }
+
+        categories.addEventListener("change", onCategoryChange);
+        types.addEventListener("change", onTypeChange);
+
+
+        updateItems(shopItems);
+
+    </script>
+</body>
+
+</html>
