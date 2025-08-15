@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       
+        function Occur_count(arr) {
+        const seen = {};
+           for(let i of arr){
+             if(seen[i] == undefined){
+                seen[i] = 1;
+             } 
+             else{
+                seen[i] = seen[i]+1;
+             }
+           }
+           console.log(seen)
+        }
+        const arr = ['jay','hind','12',13,'jay', 'hind',1,2,3];
+        Occur_count(arr)
+    </script>
+</body>
+</html>
