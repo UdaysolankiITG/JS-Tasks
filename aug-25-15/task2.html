@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+             function count(arr) {
+                const occur = new Map();
+                for (let item of arr) {
+                    if(occur.get(item) == undefined){
+                        occur.set(item ,1);
+                    }
+                    else{
+                        let count = occur.get(item);
+                        occur.set(item,count+1)
+                    }
+                }
+                console.log(occur.size())              
+             }
+    </script>
+</body>
+</html>
