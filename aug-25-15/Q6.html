@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//         6. Find common values in two arrays
+// 🧠 Problem samajho: Tumhe un elements ka list chahiye jo dono arrays mein ho.
+// 📥 Input: [1, 2, 3], [2, 3, 4]
+//  📤 Output: [2, 3]
+// 📘 Hint: Set + filter.
+function findCommon(arr1, arr2) {
+  let set2 = new Set(arr2);
+  return arr1.filter(item => set2.has(item));
+}
+
+console.log(findCommon([1, 2, 3], [2, 3, 4])); 
+
+    </script>
+</body>
+</html>

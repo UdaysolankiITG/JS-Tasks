@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 3. Do arrays ke unique elements find karo
+🧠 Problem samajho: Tumhe un values ka array banana hai jo ya to pehle array mein ho ya dusre mein, lekin dono mein na ho.
+📥 Input: [1, 2, 3], [3, 4, 5]
+ 📤 Output: [1, 2, 4, 5]
+📘 Hint: Symmetric difference concept. -->
+<script>
+    function symmetricDifference(arr1, arr2) {
+  let set1 = new Set(arr1);
+  let set2 = new Set(arr2);
+
+  let result = [];
+
+  for (let val of set1) {
+    if (!set2.has(val)) {
+      result.push(val);
+    }
+  }
+
+  for (let val of set2) {
+    if (!set1.has(val)) {
+      result.push(val);
+    }
+  }
+
+  return result;
+}
+
+console.log(symmetricDifference([1, 2, 3], [3, 4, 5])); 
+
+</script>
+
+</body>
+</html>

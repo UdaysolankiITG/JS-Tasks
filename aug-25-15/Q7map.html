@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //         1. Count character frequency
+        // 🧠 Problem samajho: Har character kitni baar aaya hai, wo count karo.
+        // 📥 Input: "aabccc"
+        //  📤 Output: { a: 2, b: 1, c: 3 }
+        // 📘 Hint: Loop chalao, Map ya object mein count badhao.
+        function countCharFrequency(str) {
+            let freq = {};
+
+            for (let char of str) {
+                if (freq[char]) {
+                    freq[char]++;
+                } else {
+                    freq[char] = 1;
+                }
+            }
+
+            return freq;
+        }
+
+        console.log(countCharFrequency("aabccc")); // { a: 2, b: 1, c: 3 }
+
+    </script>
+</body>
+
+</html>

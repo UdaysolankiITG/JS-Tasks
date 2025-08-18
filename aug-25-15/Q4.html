@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//         4. Check karo ek set doosre set ke andar aata hai ya nahi
+// 🧠 Problem samajho: Aapko dekhna hai ki kya har element Set B ka, Set A mein bhi hai?
+// 📥 Set A: [1, 2, 3, 4]
+//  📥 Set B: [2, 4]
+//  📤 Output: true
+// 📘 Hint: Har element B ka A mein has() se check karo.
+
+        function isSubset(setA, setB) {
+  let bigSet = new Set(setA);
+  for (let val of setB) {
+    if (!bigSet.has(val)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+console.log(isSubset([1, 2, 3, 4], [2, 4]));
+
+    </script>
+</body>
+</html>

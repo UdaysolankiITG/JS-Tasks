@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login / Signup</title>
+  <style>
+    /* Same CSS as before... */
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      width: 400px;
+    }
+
+    .innerContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .btn-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    input {
+      padding: 12px;
+      width: 100%;
+      max-width: 250px;
+      border: 1px solid #a19090;
+      border-radius: 10px;
+      margin: 8px 0;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus {
+      box-shadow: 0 0 8px rgba(179, 202, 227, 0.6);
+      border-color: #b4b9be;
+    }
+
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 10px;
+      background-color: #35ff3c;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #7355f7;
+      transform: scale(1.05);
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #b6dcb7;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .deactive {
+      display: none;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Login Form -->
+    <div class="active" id="Login">
+      <form class="innerContainer" onsubmit="return validateLogin()">
+        <h1>Login</h1>
+        <label>
+          Email:
+          <input type="text" id="loginEmail" placeholder="Enter your email" />
+        </label>
+        <label>
+          Password:
+          <input type="password" id="loginPassword" placeholder="Enter your password" />
+        </label>
+        <p id="loginError" class="error"></p>
+        <div class="btn-container">
+          <button type="submit">Login</button>
+          <button type="button" onclick="showLogin()">Sign Up</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Signup Form -->
+    <div class="deactive" id="Signup">
+      <form class="innerContainer" onsubmit="return validateSignup()">
+        <h1>Sign Up</h1>
+        <label>
+          Name:
+          <input type="text" id="signupName" placeholder="Enter your name" />
+        </label>
+        <label>
+          Email:
+          <input type="text" id="signupEmail" placeholder="Enter your email" />
+        </label>
+        <label>
+          Password:
+          <input type="password" id="signupPassword" placeholder="Enter your password" />
+        </label>
+        <p id="signupError" class="error"></p>
+        <div class="btn-container">
+          <button type="button" onclick="showSignup()">Login</button>
+          <button type="submit">Sign Up</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const Login = document.querySelector("#Login");
+    const Signup = document.querySelector("#Signup");
+
+    function showSignup() {
+      Login.setAttribute("class", "active");
+      Signup.setAttribute("class", "deactive");
+    }
+
+    function showLogin() {
+      Signup.setAttribute("class", "active");
+      Login.setAttribute("class", "deactive");
+    }
+
+    function validateEmail(email) {
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regex.test(email);
+    }
+
+    function validateLogin() {
+      const email = document.getElementById("loginEmail").value.trim();
+      const password = document.getElementById("loginPassword").value.trim();
+      const error = document.getElementById("loginError");
+      error.textContent = "";
+
+      if (!email || !password) {
+        error.textContent = "Please fill in all fields.";
+        return false;
+      }
+
+      if (!validateEmail(email)) {
+        error.textContent = "Invalid email format.";
+        return false;
+      }
+
+      if (password.length < 6) {
+        error.textContent = "Password must be at least 6 characters.";
+        return false;
+      }
+
+      alert("Login successful!"); // Placeholder
+      return true;
+    }
+
+    function validateSignup() {
+      const name = document.getElementById("signupName").value.trim();
+      const email = document.getElementById("signupEmail").value.trim();
+      const password = document.getElementById("signupPassword").value.trim();
+      const error = document.getElementById("signupError");
+      error.textContent = "";
+
+      if (!name || !email || !password) {
+        error.textContent = "All fields are required.";
+        return false;
+      }
+
+      if (!validateEmail(email)) {
+        error.textContent = "Invalid email format.";
+        return false;
+      }
+
+      if (password.length < 6) {
+        error.textContent = "Password must be at least 6 characters.";
+        return false;
+      }
+
+      alert("Signup successful!"); // Placeholder
+      return true;
+    }
+  </script>
+</body>
+
+</html>

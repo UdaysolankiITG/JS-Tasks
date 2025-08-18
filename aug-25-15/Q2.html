@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//         2. Do strings mein same characters hain ya nahi check karo
+// 🧠 Problem samajho: "abc" aur "bca" – dono mein same letters hain.'
+// ' Order important nahi hai.
+// 📥 Input: "abc", "bca"
+//  📤 Output: true
+// 📘 Hint: Set banao dono ka, compare karo.
+function haveSameCharacters(str1, str2) {
+  let set1 = new Set(str1);
+  let set2 = new Set(str2);
+  
+  if (set1.size !== set2.size) return false;
+
+  for (let char of set1) {
+    if (!set2.has(char)) return false;
+  }
+  return true;
+}
+
+console.log(haveSameCharacters("dda", "bca")); // true
+
+    </script>
+</body>
+</html>
