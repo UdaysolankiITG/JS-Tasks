@@ -132,7 +132,6 @@
             obj(data,value.name,value.value);
         })
            let jsonobj = JSON.parse(localStorage.getItem("userdata"))
-           console.log(jsonobj.email ,  data.email);
            
          if(jsonobj.email == data.email && jsonobj.pass == data.pass){
             alert("login succesful")

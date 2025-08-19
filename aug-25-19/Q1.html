@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //Q-1 use regExp and find out is string contains any char except digit or not 
+        // input - "62783d" output: "not a valid number"
+        // input - "808708789" output : "valid number"
+        let str = "1234567890";
+        let regex = /^\d+$/;
+        let res = regex.test(str);
+        console.log(res)
+    </script>
+</body>
+
+</html>

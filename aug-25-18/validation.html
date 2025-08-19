@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <form action="#" class="form">
+            <label>
+                Name:
+                <input type="text" name="name" required>
+                <p class="error" id="name"></p>
+            </label>
+            <label>
+                Email:
+                <input type="text"  name="email" required>
+                <p class="error" id="email"></p>
+            </label>
+            <div class="btn">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+    let form = document.querySelector("form")
+    let inputs = document.getElementsByTagName("input");
+    let data = {};
+     function obj(data,key,value) {
+       data[key]=value;
+       return data;        
+       }
+    form.addEventListener("submit",(e)=>{
+        e.preventDefault();
+         Array.from(inputs).forEach(value=>{
+            obj(data,value.name,value.value);
+        })
+        console.log(data)
+        let str = JSON.stringify(data)
+        localStorage.setItem("user",str);     
+    })
+</script>
+</html>
