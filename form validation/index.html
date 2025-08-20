@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        #userForm {
+            background-color: #d7c6c6;
+            padding: 30px;
+            border-radius: 10px;
+            width: 600px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        textarea {
+
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="userForm">
+        <label>
+            Name:
+            <input type="text" name="name" id="fname">
+            <p class="error" id="name"></p>
+        </label>
+        <label>
+            Last Name:
+            <input type="text" name="lname" id="last">
+            <p class="error" id="lname"></p>
+        </label>
+        <label>
+            Email:
+            <input type="text" name="email" id="mail">
+            <p class="error" id="email"></p>
+        </label>
+        <label>
+            Phone:
+            <input type="text" name="phone" id="ph">
+            <p class="error" id="phone"></p>
+        </label>
+        <label>
+            Gender:
+            male<input type="radio" name="gen" value="male">female<input type="radio" name="gen" value="female">
+            <p class="error" id="gen"></p>
+        </label>
+        <label>
+            Class:
+            <select name="class" id="clas">
+                <option value="class">Select class</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+            <p class="error" id="class"></p>
+        </label>
+        <label>
+            Address:
+            <textarea name="address" rows="3" cols="30" id="ad"></textarea>
+            <p class="error" id="add"></p>
+        </label>
+        <label>
+            Hobby:
+            Cricket<input type="checkbox" name="hobby" value="cricket" id="hobi">
+            Football<input type="checkbox" name="hobby" value="football" id="hobi">
+            Swimming<input type="checkbox" name="hobby" value="Swimming" id="hobi">
+            <p class="error" id="hobby"></p>
+        </label>
+        <label>
+            Password:
+            <input type="password" name="password" id="pass">
+            <p class="error" id="password"></p>
+        </label>
+        <label>
+            Confirm Password:
+            <input type="password" name="confirmPassword" id="cpass">
+            <p class="error" id="confirmPassword"></p>
+        </label>
+        <button type="submit">Submit</button>
+    </div>
+    <script>
+        const nameRexgex = /^[A-Za-z][A-Za-z\s]{6,}$/;
+        const last = /^[A-Za-z][A-Za-z\s]{5,}$/;
+        document.querySelector("button").addEventListener("click", function (e) {
+            e.preventDefault();
+            document.querySelectorAll(".error").forEach(el => el.textContent = "");
+            const name = document.getElementById("fname").value.trim();
+            const surname = document.getElementById("last").value.trim();
+            const email = document.getElementById("mail").value.trim();
+            const phone = document.getElementById("ph").value.trim();
+            const gender = document.querySelector("input[name='gen']:checked");
+            const selectedClass = document.getElementById("clas").value;
+            const address = document.getElementById("ad").value.trim();
+            const hobbies = document.querySelectorAll("input[name='hobby']");
+            const password = document.getElementById("pass").value;
+            const confirmPassword = document.getElementById("cpass").value;
+            const checked = [];
+
+            for (let i = 0; i < hobbies.length; i++) {
+                if (hobbies[i].checked) {
+                    checked.push(hobbies[i].value);
+                }
+            }
+
+            let isValid = true;
+
+            if (name === "") {
+                document.getElementById("name").textContent = " name is required.";
+                isValid = false;
+            } else if (!nameRexgex.test(name)) {
+                document.getElementById("name").textContent = "only character length 6";
+                isValid = false;
+            }
+
+
+
+            if (surname === "") {
+                document.getElementById("lname").textContent = "Last name is required.";
+                isValid = false;
+            }
+            if (!last.test(surname)) {
+                document.getElementById("lname").textContent = "only character";
+                isValid = false;
+            } if (surname.length < 5) {
+                document.getElementById("lname").textContent = "Minimum 5 characters required.";
+                isValid = false;
+            }
+
+            if (email === "") {
+                document.getElementById("email").textContent = "Email is required.";
+                isValid = false;
+            } else if (!email.includes("@") && !email.includes(".")) {
+                document.getElementById("email").textContent = "Invalid email format, format=example@example.com";
+                isValid = false;
+            }
+            if (phone === "") {
+                document.getElementById("phone").textContent = "Phone number is required.";
+                isValid = false;
+            }
+            else if (!/^\d{1,10}$/.test(phone)) {
+                document.getElementById("phone").textContent = "Only 10 digit number";
+                isValid = false;
+            }
+
+            if (!gender) {
+                document.getElementById("gen").textContent = "Please select gender.";
+                isValid = false;
+            }
+            if (selectedClass === "class") {
+                document.getElementById("class").textContent = "select class"
+                isValid = false;
+            }
+
+            if (address === "") {
+                document.getElementById("add").textContent = "write address"
+                isValid = false;
+            }
+
+            if (checked.length === 0) {
+                document.getElementById("hobby").textContent = "select hobby"
+                isValid = false;
+            }
+            if (password === "") {
+                document.getElementById("password").textContent = "Password is required.";
+                isValid = false;
+            } else {
+                if (password.length < 8) {
+                    document.getElementById("password").textContent = "Minimum 8 characters required.";
+                    isValid = false;
+                }
+            }
+
+            if (confirmPassword === "") {
+                document.getElementById("confirmPassword").textContent = "Confirm your password.";
+                isValid = false;
+            } else if (confirmPassword !== password) {
+                document.getElementById("confirmPassword").textContent = "Passwords do not match.";
+                isValid = false;             
+            }
+
+            if (isValid) {
+                const formData = {
+                    name,
+                    surname,
+                    email,
+                    phone,
+                    gender: gender.value,
+                    selectedClass,
+                    address,
+                    checked,
+                    password,
+                };
+                alert("Form submited succesfully")
+                setTimeout(() => {
+                    let str = JSON.stringify(formData);
+                    localStorage.setItem("User data", str);
+                    alert("Form data added to local storage")
+                }, 2000);
+                console.log("Form data:", formData);
+
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>
