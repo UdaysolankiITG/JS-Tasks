@@ -14,10 +14,10 @@
         }
 
         #userForm {
-            background-color: #d7c6c6;
+            
             padding: 30px;
             border-radius: 10px;
-            width: 600px;
+            width: 500px;
         }
 
         label {
@@ -82,6 +82,7 @@
 
 <body>
     <div id="userForm">
+        <H1>Registration form</H1>
         <label>
             Name:
             <input type="text" name="name" id="fname">
@@ -151,11 +152,10 @@
         <button type="submit">Submit</button>
     </div>
     <script>
-        const nameRexgex = /^[A-Za-z][A-Za-z\s]{6,}$/;
-        const last = /^[A-Za-z][A-Za-z\s]{5,}$/;
+        const nameRexgex = /^[A-Za-z][A-Za-z\s]{5,}$/;
+        const last = /^[A-Za-z][A-Za-z\s]{4,}$/;
         document.querySelector("button").addEventListener("click", function (e) {
             e.preventDefault();
-            document.querySelectorAll(".error").forEach(el => el.textContent = "");
             const name = document.getElementById("fname").value.trim();
             const surname = document.getElementById("last").value.trim();
             const email = document.getElementById("mail").value.trim();
@@ -167,15 +167,12 @@
             const password = document.getElementById("pass").value;
             const confirmPassword = document.getElementById("cpass").value;
             const checked = [];
-
             for (let i = 0; i < hobbies.length; i++) {
                 if (hobbies[i].checked) {
                     checked.push(hobbies[i].value);
                 }
             }
-
             let isValid = true;
-
             if (name === "") {
                 document.getElementById("name").textContent = " name is required.";
                 isValid = false;
@@ -263,11 +260,10 @@
                     password,
                 };
                 alert("Form submited succesfully")
-                setTimeout(() => {
+            
                     let str = JSON.stringify(formData);
                     localStorage.setItem("User data", str);
                     alert("Form data added to local storage")
-                }, 2000);
                 console.log("Form data:", formData);
 
             }
