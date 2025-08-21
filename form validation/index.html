@@ -14,7 +14,7 @@
         }
 
         #userForm {
-            
+            background-color: beige;
             padding: 30px;
             border-radius: 10px;
             width: 500px;
@@ -82,7 +82,8 @@
 
 <body>
     <div id="userForm">
-        <H1>Registration form</H1>
+        <H1>Registration form
+        </H1>
         <label>
             Name:
             <input type="text" name="name" id="fname">
@@ -152,10 +153,12 @@
         <button type="submit">Submit</button>
     </div>
     <script>
-        const nameRexgex = /^[A-Za-z][A-Za-z\s]{5,}$/;
+        const nameRexgex = /^[A-Za-z][A-Za-z\s]{4,}$/;
         const last = /^[A-Za-z][A-Za-z\s]{4,}$/;
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         document.querySelector("button").addEventListener("click", function (e) {
             e.preventDefault();
+              document.querySelectorAll(".error").forEach(el => el.textContent = "");
             const name = document.getElementById("fname").value.trim();
             const surname = document.getElementById("last").value.trim();
             const email = document.getElementById("mail").value.trim();
@@ -172,82 +175,80 @@
                     checked.push(hobbies[i].value);
                 }
             }
-            let isValid = true;
+            let valid = true;
             if (name === "") {
                 document.getElementById("name").textContent = " name is required.";
-                isValid = false;
+                valid = false;
             } else if (!nameRexgex.test(name)) {
                 document.getElementById("name").textContent = "only character length 6";
-                isValid = false;
+                valid = false;
             }
 
 
 
             if (surname === "") {
                 document.getElementById("lname").textContent = "Last name is required.";
-                isValid = false;
+                valid = false;
             }
-            if (!last.test(surname)) {
+           else if (!last.test(surname)) {
                 document.getElementById("lname").textContent = "only character";
-                isValid = false;
-            } if (surname.length < 5) {
-                document.getElementById("lname").textContent = "Minimum 5 characters required.";
-                isValid = false;
+                valid = false;
             }
 
             if (email === "") {
                 document.getElementById("email").textContent = "Email is required.";
-                isValid = false;
-            } else if (!email.includes("@") && !email.includes(".")) {
+                valid = false;
+            } 
+            else if (!emailRegex.test(email)) {
                 document.getElementById("email").textContent = "Invalid email format, format=example@example.com";
-                isValid = false;
+                valid = false;
             }
             if (phone === "") {
                 document.getElementById("phone").textContent = "Phone number is required.";
-                isValid = false;
+                valid = false;
             }
             else if (!/^\d{1,10}$/.test(phone)) {
                 document.getElementById("phone").textContent = "Only 10 digit number";
-                isValid = false;
+                valid = false;
             }
 
             if (!gender) {
                 document.getElementById("gen").textContent = "Please select gender.";
-                isValid = false;
+                valid = false;
             }
             if (selectedClass === "class") {
                 document.getElementById("class").textContent = "select class"
-                isValid = false;
+                valid = false;
             }
 
             if (address === "") {
                 document.getElementById("add").textContent = "write address"
-                isValid = false;
+                valid = false;
             }
 
             if (checked.length === 0) {
                 document.getElementById("hobby").textContent = "select hobby"
-                isValid = false;
+                valid = false;
             }
             if (password === "") {
                 document.getElementById("password").textContent = "Password is required.";
-                isValid = false;
+                valid = false;
             } else {
                 if (password.length < 8) {
                     document.getElementById("password").textContent = "Minimum 8 characters required.";
-                    isValid = false;
+                    valid = false;
                 }
             }
 
             if (confirmPassword === "") {
                 document.getElementById("confirmPassword").textContent = "Confirm your password.";
-                isValid = false;
+                valid = false;
             } else if (confirmPassword !== password) {
                 document.getElementById("confirmPassword").textContent = "Passwords do not match.";
-                isValid = false;             
+                valid = false;             
             }
 
-            if (isValid) {
+            if (valid) {
                 const formData = {
                     name,
                     surname,
@@ -256,16 +257,14 @@
                     gender: gender.value,
                     selectedClass,
                     address,
-                    checked,
+                    hobby:checked,
                     password,
                 };
-                alert("Form submited succesfully")
             
                     let str = JSON.stringify(formData);
                     localStorage.setItem("User data", str);
-                    alert("Form data added to local storage")
-                console.log("Form data:", formData);
-
+                console.log("Form data:", str);
+           alert("form submited succesfully,data stored to local storage")
             }
         });
 
