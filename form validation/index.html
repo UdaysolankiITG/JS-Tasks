@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>form</title>
+    <title>STudent Registraton form</title>
     <style>
         body {
             display: flex;
@@ -13,11 +13,27 @@
             margin: 0;
         }
 
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            background-color: #2b872e;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            
+            transform: scale(1.05);
+        }
+
         #userForm {
-            background-color: beige;
+            background-color: rgb(206, 206, 192);
             padding: 30px;
             border-radius: 10px;
             width: 500px;
+             box-shadow: 0 10px 30px rgba(167, 139, 139, 0.1);
         }
 
         label {
@@ -155,10 +171,10 @@
     <script>
         const nameRexgex = /^[A-Za-z][A-Za-z\s]{4,}$/;
         const last = /^[A-Za-z][A-Za-z\s]{4,}$/;
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         document.querySelector("button").addEventListener("click", function (e) {
             e.preventDefault();
-              document.querySelectorAll(".error").forEach(el => el.textContent = "");
+            document.querySelectorAll(".error").forEach(el => el.textContent = "");
             const name = document.getElementById("fname").value.trim();
             const surname = document.getElementById("last").value.trim();
             const email = document.getElementById("mail").value.trim();
@@ -190,7 +206,7 @@
                 document.getElementById("lname").textContent = "Last name is required.";
                 valid = false;
             }
-           else if (!last.test(surname)) {
+            else if (!last.test(surname)) {
                 document.getElementById("lname").textContent = "only character";
                 valid = false;
             }
@@ -198,7 +214,7 @@
             if (email === "") {
                 document.getElementById("email").textContent = "Email is required.";
                 valid = false;
-            } 
+            }
             else if (!emailRegex.test(email)) {
                 document.getElementById("email").textContent = "Invalid email format, format=example@example.com";
                 valid = false;
@@ -233,19 +249,21 @@
             if (password === "") {
                 document.getElementById("password").textContent = "Password is required.";
                 valid = false;
-            } else {
-                if (password.length < 8) {
+            } else if (password.length < 8) {
                     document.getElementById("password").textContent = "Minimum 8 characters required.";
                     valid = false;
                 }
-            }
+             else if(password.length >=16 ){
+                document.getElementById("password").textContent = "Maximum 16 characters required.";
+                    valid = false;
+             }
 
             if (confirmPassword === "") {
                 document.getElementById("confirmPassword").textContent = "Confirm your password.";
                 valid = false;
             } else if (confirmPassword !== password) {
                 document.getElementById("confirmPassword").textContent = "Passwords do not match.";
-                valid = false;             
+                valid = false;
             }
 
             if (valid) {
@@ -257,14 +275,14 @@
                     gender: gender.value,
                     selectedClass,
                     address,
-                    hobby:checked,
+                    hobby: checked,
                     password,
                 };
-            
-                    let str = JSON.stringify(formData);
-                    localStorage.setItem("User data", str);
+
+                let str = JSON.stringify(formData);
+                localStorage.setItem("User data", str);
                 console.log("Form data:", str);
-           alert("form submited succesfully,data stored to local storage")
+                alert("form submited succesfully,data stored to local storage")
             }
         });
 

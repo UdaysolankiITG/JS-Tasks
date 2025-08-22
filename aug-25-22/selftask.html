@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            background-color: white;
+            max-width: 500px;
+            margin: auto;
+            padding: 30px 40px;
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .checkbox {
+            display: flex;
+            flex-direction: row;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            display: flex;
+            margin: auto;
+            padding-top: 10px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            background-color: #2b872e;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #07650a;
+        }
+
+        .message {
+            color: red;
+        }
+
+        #strength {
+            color: red;
+        }
+
+        .str {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Password Genarator</h2>
+        <form id="passgen">
+            <Label>
+                Password length: <input type="number" name="passlength" id="length" value="4" min="4" max="32">
+            </Label>
+            <div class="checkbox">
+                <label>
+                    Includes uppercase
+                    <input type="checkbox" value="upper" id="upper">
+                </label>
+                <label>Include lowercase
+                    <input type="checkbox" value="lower" id="lower"> 
+                </label>
+
+                <label>
+                    Include number
+                    <input type="checkbox" value="number" id="number">
+                </label>
+                <label>
+                    Include symbol
+                    <input type="checkbox" value="symbol" id="symbol"> 
+                </label>
+            </div>
+
+            <button type="submit" id="generate">Generate Password</button>
+            <label>Your Password
+                <input type="text" id="password" readonly>
+            </label>
+
+            <div class="str">
+                <p>Strength:-</p>
+                <p id="strength"></p>
+            </div>
+            <p class="message" id="error"></p>
+        </form>
+    </div>
+    <script>
+        const Length = document.getElementById("length");
+        const upper = document.getElementById("upper");
+        const lower = document.getElementById("lower");
+        const number = document.getElementById("number");
+        const symbol = document.getElementById("symbol");
+        const form = document.getElementById("passgen");
+        const passwordin = document.getElementById("password");
+        const erro = document.getElementById("error");
+        const strength = document.getElementById("strength");
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            let character = "";
+
+            if (upper.checked) {
+                let Upperword = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                character += Upperword;
+            }
+            if (lower.checked) {
+                let lowerword = "abcdefghijklmnopqrstuvwxyz";
+                character += lowerword;
+            }
+            if (number.checked) {
+                let numbers = "0123456789";
+                character += numbers;
+            }
+            if (symbol.checked) {
+                let symbols = "~!@#$%^&*()_+=-/{}?/.><";
+                character += symbols;
+            }
+            if (!character) {
+                passwordin.value = "";
+                erro.innerHTML = "please select a option"
+                strength.innerHTML = "";
+                return;
+            }
+            let password = "";
+            let lenth = parseInt(Length.value)
+            for (let i = 0; i < lenth; i++) {
+                let index = Math.floor(Math.random() * character.length);
+                password += character[index];
+            }
+            passwordin.value = password;
+            erro.innerHTML = "";
+        })
+    </script>
+</body>
+
+</html>

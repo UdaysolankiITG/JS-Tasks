@@ -32,6 +32,116 @@ let intersection = arr2.filter(item => set1.has(item));
 
 console.log(intersection);
 
+const lengthInput = document.getElementById("length");
+const uppercaseInput = document.getElementById("uppercase");
+const lowercaseInput = document.getElementById("lowercase");
+const numbersInput = document.getElementById("numbers");
+const symbolsInput = document.getElementById("symbols");
+const passwordOutput = document.getElementById("password");
+const generateBtn = document.getElementById("generate");
+const message = document.getElementById("message");
+const strengthText = document.getElementById("strengthText");
+
+const UPPERCASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const LOWERCASE = "abcdefghijklmnopqrstuvwxyz";
+const NUMBERS = "0123456789";
+const SYMBOLS = "!@#$%^&*()_+-=[]{};:<>?/";
+
+generateBtn.addEventListener("click", () => {
+    const length = parseInt(lengthInput.value);
+    let charset = "";
+    let typeCount = 0;
+
+    if (uppercaseInput.checked) {
+        charset += UPPERCASE;
+        typeCount++;
+    }
+    if (lowercaseInput.checked) {
+        charset += LOWERCASE;
+        typeCount++;
+    }
+    if (numbersInput.checked) {
+        charset += NUMBERS;
+        typeCount++;
+    }
+    if (symbolsInput.checked) {
+        charset += SYMBOLS;
+        typeCount++;
+    }
+
+    if (!charset) {
+        passwordOutput.value = "";
+        message.textContent = "Please select at least one option.";
+        message.style.color = "red";
+        strengthText.textContent = "-";
+        strengthText.className = "";
+        return;
+    }
+
+    let password = "";
+    for (let i = 0; i < length; i++) {
+        const index = Math.floor(Math.random() * charset.length);
+        password += charset[index];
+    }
+
+    passwordOutput.value = password;
+    message.textContent = "";
+    evaluateStrength(password, typeCount);
+});
+
+function evaluateStrength(password, typeCount) {
+    const length = password.length;
+    let strength = "";
+    let className = "";
+
+    if (length < 8 || typeCount <= 1) {
+        strength = "Weak";
+        className = "weak";
+    } else if (length >= 8 && typeCount >= 2) {
+        strength = "Medium";
+        className = "medium";
+    }
+    if (length >= 12 && typeCount === 4) {
+        strength = "Strong";
+        className = "strong";
+    }
+
+    strengthText.textContent = strength;
+    strengthText.className = className;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     </script>
 </body>
