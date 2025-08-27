@@ -62,7 +62,7 @@
         if (!response.ok) throw new Error("City not found");
 
         const data = await response.json();
-        const iconCode = data.weather[0].icon;
+        const iconCode = data.weather[0].icon;                   
         const iconUrl = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
         const weatherHTML = `

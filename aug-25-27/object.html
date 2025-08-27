@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       const person = {
+  firstName: "John",
+  lastName: "Doe",
+  language: "EN"
+};
+
+const man = Object.create(person);
+man.firstName = "Peter";
+console.log(man);
+   const  obj = {
+    firstname:"uday",
+    age:19,
+    class:"bca",
+   }
+   const newobj = {
+    district:"dewas",
+    state:"madhyapradesh"
+   }
+//    Object.assign(obj,newobj);
+//    console.log(obj);
+   const obj2 =  Object.entries(obj);
+   console.log(obj2);
+    const  obj3 =   Object.fromEntries(obj2);
+    console.log(obj3);
+      const obj4 = Object.values(obj3);
+      console.log(obj4);
+       const obj5 = Object.keys(obj3);
+      console.log(obj5);
+      const freez = Object.freeze(obj);
+      console.log(Object.isFrozen(freez))
+      const fruits = [
+  {name:"apples", quantity:300},
+  {name:"bananas", quantity:500},
+  {name:"oranges", quantity:200},
+  {name:"kiwi", quantity:150}
+];
+
+function myCallback({ quantity }) {
+  return quantity > 200 ? "ok" : "low";
+}
+
+const result = Object.groupBy(fruits, myCallback);
+console.log(result);
+    </script>
+</body>
+</html>
