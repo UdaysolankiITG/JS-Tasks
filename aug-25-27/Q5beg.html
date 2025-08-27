@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Convert an array of key-value pairs back into an object using Object.fromEntries().
+             const person = {
+            name: 'uday',
+            age: 19,
+            class : "BCA",
+        };
+
+        const arrofkeys_values = Object.entries(person);
+        console.log(arrofkeys_values);
+        const repeat = Object.fromEntries(arrofkeys_values);
+        console.log(repeat);
+         
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //   Write a function to count how many properties an object has using Object.keys().
+        function countProperties(obj) {
+            return Object.keys(obj).length;
+        }
+        const person = {
+            name: 'uday',
+            age: 19,
+            class : "BCA",
+        };
+
+        const propertyCount = countProperties(person);
+        console.log("Number of properties:", propertyCount);
+
+    </script>
+</body>
+
+</html>

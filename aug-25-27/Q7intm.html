@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Clone an object (shallow copy) using Object.assign() and verify that changes to the copy don’t affect the original.
+
+        const original = {
+            name: "uday",
+            age: 19
+        };
+        const copy = Object.assign({}, original);
+        copy.name = "aman";
+        console.log("Original:", original); 
+        console.log("Copy:", copy);        
+
+    </script>
+</body>
+
+</html>

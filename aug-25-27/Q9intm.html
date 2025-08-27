@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       // Freeze an object using Object.freeze() and try modifying its properties.
+    const obj =  {
+            person1: 'uday',
+           person1age: 19,
+           person1class: "BCA",
+        };
+        const obj2 = {salary:5000};
+    //    const freez = Object.freeze(obj);
+       Object.assign(obj,obj2);
+       console.log(obj);
+       
+    </script>
+</body>
+</html>
