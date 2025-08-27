@@ -1,84 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Weather Check Tool</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: #e0f7fa;
-      padding: 50px;
-    }
-    h1 {
-      color: #00796b;
-    }
-    input {
-      padding: 10px;
-      width: 200px;
-      font-size: 16px;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin-left: 10px;
-      cursor: pointer;
-      background-color: #00796b;
-      color: white;
-      border: none;
-      border-radius: 5px;
-    }
-    #weatherResult {
-      margin-top: 30px;
-      font-size: 18px;
-      color: #004d40;
-    }
-    img {
-      margin-top: 10px;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Weather App</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background: #eef2f3;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  .container {
+    width: 360px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  button {
+    background-color: #2196f3;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    margin: 5px 0;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  button:hover {
+    background-color: #1976d2;
+  }
+  input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 8px 10px;
+    margin: 10px 0 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  .loadingTab,
+  .weatherInformationTab,
+  .grantAccessTab,
+  .searchWeatherTab {
+    display: none;
+  }
+  .active {
+    display: block !important;
+  }
+  .loadingTab {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #555;
+  }
+  .grantAccessTab {
+    text-align: center;
+  }
+  .weatherInformationTab img {
+    display: block;
+    margin: 0 auto 10px;
+  }
+  .weatherInformationTab {
+    text-align: center;
+  }
+  .weatherInformationTab p {
+    margin: 6px 0;
+    font-size: 16px;
+    color: #444;
+  }
+  .buttonsGroup {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+</style>
 </head>
 <body>
+<div class="container">
+  <h1>Weather App</h1>
 
-  <h1>🌦️ Weather Checker</h1>
+  <div class="buttonsGroup">
+    <button id="currentWeathBtn">Current Location</button>
+    <button id="searchWeathBtn">Search City</button>
+  </div>
 
-  <input type="text" id="cityInput" placeholder="Enter city name" />
-  <button onclick="getWeather()">Check Weather</button>
+  <div class="grantAccessTab active">
+    <p>Allow access to your location to get weather info.</p>
+    <button id="grantAccessBtn">Grant Access</button>
+  </div>
 
-  <div id="weatherResult"></div>
+  <div class="loadingTab">
+    Loading weather data...
+  </div>
 
-  <script>
-    async function getWeather() {
-      const city = document.getElementById('cityInput').value.trim();
-      const apiKey = 'a173a9475981faa920d7213a714f3194'; 
-      if (!city) {
-        document.getElementById('weatherResult').innerHTML = `<p style="color:red;">Please enter a city name.</p>`;
-        return;
+  <div class="searchWeatherTab">
+    <input type="text" id="searchCityInput" placeholder="Enter city name" />
+    <button id="searchBtn">Search</button>
+  </div>
+
+  <div class="weatherInformationTab">
+    <img id="cityFlag" src="" alt="Country Flag" />
+    <h2 id="cityName"></h2>
+    <p id="weatherDesc"></p>
+    <p>Temperature: <span id="temp"></span></p>
+    <p>Humidity: <span id="humadityValue"></span></p>
+    <p>Wind Speed: <span id="windSpeedValue"></span></p>
+    <p>Clouds: <span id="cloudValue"></span></p>
+  </div>
+</div>
+
+<script>
+  const grantAccessBtn = document.querySelector("#grantAccessBtn");
+  const searchCityInput = document.querySelector("#searchCityInput");
+  const searchBtn = document.querySelector("#searchBtn");
+  const cityFlag = document.querySelector("#cityFlag");
+  const cityName = document.querySelector("#cityName");
+  const weatherDesc = document.querySelector("#weatherDesc");
+  const temp = document.querySelector("#temp");
+  const cloudValue = document.querySelector("#cloudValue");
+  const humadityValue = document.querySelector("#humadityValue");
+  const windSpeedValue = document.querySelector("#windSpeedValue");
+  const searchWeathBtn = document.querySelector("#searchWeathBtn");
+  const currentWeathBtn = document.querySelector("#currentWeathBtn");
+  const loading = document.querySelector(".loadingTab");
+  const weatherInformationTab = document.querySelector(".weatherInformationTab");
+  const grantAccessTab = document.querySelector(".grantAccessTab");
+  const searchWeatherTab = document.querySelector(".searchWeatherTab");
+
+  const API_key = 'a173a9475981faa920d7213a714f3194';
+  const position = JSON.parse(sessionStorage.getItem("position"))
+  let latitude = null;
+  let longitude = null;
+  if (position) {
+      latitude = position.latitude;
+      longitude = position.longitude;
+      grantAccessTab.classList.remove("active");
+      loading.classList.add("active");
+      getCurrentWeatherData();
+  }
+  else {
+      grantAccessTab.classList.add("active");
+  }
+
+  function setCurrentPostion(position) {
+      latitude = position.latitude;
+      longitude = position.longitude;
+      const positionData = {
+          latitude,
+          longitude
       }
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+      sessionStorage.setItem("position", JSON.stringify(positionData));
+      getCurrentWeatherData();
+  }
 
+  function getCurrentLocation() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition((position) => {
+              const { latitude, longitude } = position.coords;
+              setCurrentPostion({ latitude, longitude })
+              grantAccessTab.classList.remove("active");
+              loading.classList.add("active");
+          }, () => {
+            alert("Permission denied or unable to get location.");
+          });
+      }
+      else {
+          alert("Geolocation is not supported by this browser.");
+      }
+  }
+
+  function getImportantInfo(data) {
+      const newInfo = {};
+      newInfo.cityName = data.name;
+      newInfo.description = data.weather[0].description;
+      newInfo.windSpeed = data.wind.speed;
+      newInfo.humidity = data.main.humidity;
+      newInfo.temp = data.main.temp;
+      newInfo.clouds = data.clouds.all;
+      newInfo.countryCode = data.sys.country;
+      newInfo.countryFlag = `https://flagsapi.com/${newInfo.countryCode}/flat/64.png`;
+      weatherInformationTab.classList.add("active");
+      displayWeatherInfo(newInfo);
+  }
+
+  async function getCurrentWeatherData() {
       try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error("City not found");
-
-        const data = await response.json();
-        const iconCode = data.weather[0].icon;                   
-        const iconUrl = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
-
-        const weatherHTML = `
-          <h2>Weather in ${data.name}, ${data.sys.country}</h2>
-          <img src="${iconUrl}" alt="Weather icon" />
-          <p><strong>${data.weather[0].main}</strong> - ${data.weather[0].description}</p>
-          <p>🌡️ Temperature: ${data.main.temp}°C</p>
-          <p>💨 Wind Speed: ${data.wind.speed} m/s</p>
-          <p>💧 Humidity: ${data.main.humidity}%</p>
-        `;
-        document.getElementById('weatherResult').innerHTML = weatherHTML;
+          const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_key}&units=metric`);
+          const data = await response.json();
+          if(data.cod !== 200){
+              throw new Error(data.message);
+          }
+          getImportantInfo(data);
       } catch (error) {
-        document.getElementById('weatherResult').innerHTML = `<p style="color:red;">${error.message}</p>`;
+          alert("Error fetching current weather: " + error.message);
+      } finally {
+          loading.classList.remove("active");
       }
-    }
-  </script>
+  }
 
+  function displayWeatherInfo(weatherInfo) {
+      cityName.innerText = weatherInfo.cityName;
+      cityFlag.src = weatherInfo.countryFlag;
+      temp.innerText = weatherInfo.temp + " °C";
+      humadityValue.innerText = weatherInfo.humidity + "%";
+      windSpeedValue.innerText = weatherInfo.windSpeed + " m/s";
+      cloudValue.innerText = weatherInfo.clouds + "%";
+      weatherDesc.innerText = weatherInfo.description;
+  }
+
+  async function getCityWeatherData(cityName) {
+      try {
+          const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_key}&units=metric`);
+          const data = await response.json();
+          if (data.cod == '404') {
+              throw (new Error("City not found"));
+          }
+          getImportantInfo(data);
+      } catch (error) {
+          alert("Error fetching city weather: " + error.message);
+      } finally {
+          loading.classList.remove("active");
+      }
+  }
+
+  grantAccessBtn.addEventListener("click", getCurrentLocation);
+  currentWeathBtn.addEventListener("click", () => {
+      grantAccessTab.classList.remove("active");
+      searchWeatherTab.classList.remove("active");
+      weatherInformationTab.classList.remove("active");
+      getCurrentLocation();
+      loading.classList.add("active");
+  });
+  searchWeathBtn.addEventListener("click", () => {
+      weatherInformationTab.classList.remove("active");
+      grantAccessTab.classList.remove("active");
+      searchWeatherTab.classList.add("active");
+  });
+
+  searchBtn.addEventListener("click", () => {
+      const city = searchCityInput.value;
+      if (city.trim().length == 0) {
+          alert("Please enter a valid city name");
+          return;
+      }
+      loading.classList.add('active');
+      getCityWeatherData(city);
+  });
+</script>
 </body>
 </html>
