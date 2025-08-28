@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login / Signup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .toggle-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .toggle-btns button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background: #ddd;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .toggle-btns button.active {
+            background: #007bff;
+            color: white;
+        }
+
+        form {
+            display: none;
+            flex-direction: column;
+        }
+
+        form.active {
+            display: flex;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button.submit-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button.submit-btn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="toggle-btns">
+            <button id="loginBtn" class="active">Login</button>
+            <button id="signupBtn">Signup</button>
+        </div>
+
+        <form id="loginForm" class="active">
+            <input type="email"  id="lemail" placeholder="Email" required />
+            <input type="password" id="lpass"placeholder="Password" required />
+            <button type="submit" class="submit-btn">Login</button>
+        </form>
+
+
+        <form id="signupForm">
+            <input type="text" id="signupname" placeholder="Name" required />
+            <input type="email" id="signupemail" placeholder="Email" required />
+            <input type="password" id="signuppass" placeholder="Password" required />
+            <button type="submit" class="submit-btn">Signup</button>
+        </form>
+    </div>
+
+    <script>
+        const loginBtn = document.getElementById('loginBtn');
+        const signupBtn = document.getElementById('signupBtn');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+
+        loginBtn.addEventListener('click', () => {
+            loginBtn.classList.add('active');
+            signupBtn.classList.remove('active');
+            loginForm.classList.add('active');
+            signupForm.classList.remove('active');
+        });
+
+        signupBtn.addEventListener('click', () => {
+            signupBtn.classList.add('active');
+            loginBtn.classList.remove('active');
+            signupForm.classList.add('active');
+            loginForm.classList.remove('active');
+        });
+        function createsignup(Data) {
+            fetch('https://ewl-server.vercel.app/api/v1/Auth/Signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(Data),
+            })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error),
+                    alert("user already exist"));
+        }
+        function login(Logindata) {
+            fetch('https://ewl-server.vercel.app/api/v1/Auth/Login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(Logindata),
+            })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error),
+                    alert("login unsuccesfull"));
+        }
+        signupForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const sname = document.getElementById('signupname').value.trim();
+            const semail = document.getElementById('signupemail').value.trim();
+            const spass = document.getElementById('signuppass').value;
+
+            const Data = {
+                Name: sname,
+                Email: semail,
+                Password: spass,
+            };
+
+            console.log(Data);
+            createsignup(Data);
+        });
+        loginForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const lemail = document.getElementById('lemail').value.trim();
+            const lpass = document.getElementById('lpass').value;
+
+            const Logindata = {
+                Email: lemail,
+                Password: lpass,
+            };
+
+            console.log(Logindata);
+            login(Logindata);
+        });
+    </script>
+
+</body>
+
+</html>

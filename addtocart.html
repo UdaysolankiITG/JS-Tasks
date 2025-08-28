@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div {
+            display: grid;
+            grid-template-columns: 20% 20% 20% 20% 20%;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            font-size: 23px;
+            font-family: sans-serif;
+            gap: 12px;
+            padding: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div"></div>
+    <script>
+        async function userdata() {
+            try {
+                let response = await fetch('https://dummyjson.com/products')
+                // console.log(response);  
+                let data = await response.json()
+                //   console.log(data);
+                const arr = Object.values(data.products);
+                console.log(arr);
+
+                arr.forEach((element, ine) => {
+                    const div = document.getElementById('div')
+                    div.innerHTML += `
+                   <div class="card"> <img src=${element.images[0]} >
+                    <span> Category:${element.category}</span> 
+                     <span> ${element.availabilityStatus}</span> 
+                    <span> Price:${element.price}</span></div>
+                    `
+                });
+            }
+            catch (error) {
+                console.error('Error fetching weather data:', error);
+            }
+
+        }
+        userdata()
+        console.log(userdata());
+
+
+        // let div = document.getElementById('div')
+        // const image = document.createElement("img")
+        // image.src = element.images[0];
+        // div.appendChild(image)
+    </script>
+</body>
+
+</html>
+ 

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const Data = {
+                Email: 'amankumar@example.com',
+                Password: 'mysecurepassword',
+                Name: 'amankumar'
+            };
+            function createsignup(data) {
+                 fetch('https://ewl-server.vercel.app/api/v1/Auth/Signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(Data),
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+            }
+        createsignup(Data);
+    </script>
+</body>
+
+</html>
