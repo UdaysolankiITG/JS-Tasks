@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple E-Commerce</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .product, .cart-item { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
+    .product img { width: 100px; }
+    .cart { margin-top: 30px; }
+  </style>
+</head>
+<body>
+
+  <h1>🛍️ My E-Commerce Store</h1>
+  <div id="products"></div>
+
+  <h2>🛒 Cart</h2>
+  <div id="cart"></div>
+
+  <script>
+    const productsDiv = document.getElementById('products');
+    const cartDiv = document.getElementById('cart');
+
+    let cart = []; // We'll use this to track cart locally (simulate)
+
+    // 1. Get Products from API
+    async function fetchProducts() {
+      const res = await fetch('https://fakestoreapi.com/products');
+      const products = await res.json();
+      displayProducts(products);
+    }
+
+    // 2. Display Products
+    function displayProducts(products) {
+      productsDiv.innerHTML = '';
+      products.forEach(product => {
+        const div = document.createElement('div');
+        div.className = 'product';
+        div.innerHTML = `
+          <h3>${product.title}</h3>
+          <img src="${product.image}" />
+          <p>$${product.price}</p>
+          <button onclick="addToCart(${product.id})">Add to Cart</button>
+        `;
+        productsDiv.appendChild(div);
+      });
+    }
+
+    // 3. Add to Cart (Simulated API)
+    async function addToCart(productId) {
+      // Simulate API POST
+      const res = await fetch('https://fakestoreapi.com/carts', {
+        method: 'POST',
+        body: JSON.stringify({
+          userId: 1,
+          date: new Date(),
+          products: [{ productId, quantity: 1 }]
+        }),
+        headers: { 'Content-Type': 'application/json' }
+      });
+
+      const data = await res.json();
+      console.log('Added to cart (API):', data);
+
+      // Update local cart
+      const productRes = await fetch(`https://fakestoreapi.com/products/${productId}`);
+      const product = await productRes.json();
+      cart.push(product);
+      displayCart();
+    }
+
+    // 4. Display Cart
+    function displayCart() {
+      cartDiv.innerHTML = '';
+      cart.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <strong>${item.title}</strong> - $${item.price}
+          <button onclick="removeFromCart(${index})">Delete</button>
+        `;
+        cartDiv.appendChild(div);
+      });
+    }
+
+    // 5. Remove from Cart (Simulated)
+    function removeFromCart(index) {
+      // Simulate DELETE (no real delete in fakestoreapi for individual cart items)
+      console.log('Removing from cart:', cart[index]);
+      cart.splice(index, 1); // Remove locally
+      displayCart();
+    }
+
+    // Init
+    fetchProducts();
+  </script>
+
+</body>
+</html>
