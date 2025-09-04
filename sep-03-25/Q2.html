@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>document</title>
+  <style>
+    div {
+      background-color: lightcoral;
+      padding: 40px;
+    }
+
+    section {
+      background-color: lightblue;
+      padding: 30px;
+    }
+
+    button {
+      background-color: lightgreen;
+      padding: 10px 20px;
+ 
+    }
+  </style>
+</head>
+<body>
+  <div onclick="handleDivClick()">
+    <section onclick="handleSectionClick(event)">
+      <button onclick="handleButtonClick()">Click Me</button>
+    </section>
+  </div>
+
+  <script>
+    function handleDivClick() {
+      console.log('DIV clicked');
+    }
+
+    function handleSectionClick(event) {
+      console.log('SECTION clicked');
+      event.stopPropagation();
+    }
+
+    function handleButtonClick() {
+      console.log('BUTTON clicked');
+    }
+  </script>
+</body>
+</html>

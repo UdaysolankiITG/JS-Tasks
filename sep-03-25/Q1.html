@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+//         🔹 Task 1: Safe Email Getter (Class + Optional Chaining)
+// Ek User class banao jisme name aur profile ho.
+//  Method getEmail() likho jo profile?.email ?? "No email" return kare.
+class User {
+  constructor(name, profile) {
+    this.name = name;
+    this.profile = profile;
+  }
+
+  getEmail() {
+    return this.profile ?? "No email";
+  }
+}
+ let user1 = new User("uday","example@example.com")
+ console.log(user1.getEmail());
+ 
+    </script>
+</body>
+
+</html>

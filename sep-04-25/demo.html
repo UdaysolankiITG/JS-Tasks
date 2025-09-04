@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Bank Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form,
+        .actions {
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            margin: 5px 0 15px 0;
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        #output {
+            white-space: pre-line;
+            background-color: #e8f4ea;
+            border-left: 5px solid green;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Bank Account Creator</h1>
+
+    <form id="accountForm">
+        <label>Holder Name:</label>
+        <input type="text" id="holderName" required />
+
+        <label>IFSC Code:</label>
+        <input type="text" id="ifscCode" required />
+
+        <label>Bank Name:</label>
+        <input type="text" id="bankName" required />
+
+        <label>Branch Name:</label>
+        <input type="text" id="branchName" required />
+
+        <label>Mobile Number:</label>
+        <input type="text" id="mobileNumber" required />
+
+        <label>Initial Deposit:</label>
+        <input type="number" id="initialDeposit" required />
+
+        <button type="submit">Create Account</button>
+    </form>
+
+    <div class="actions">
+        <h3>Actions</h3>
+        <label>Amount:</label>
+        <input type="number" id="amount" />
+
+        <label>ATM PIN (for debit/reset):</label>
+        <input type="number" id="pinInput" />
+
+        <label>New PIN (only for PIN reset):</label>
+        <input type="number" id="newPinInput" />
+
+        <button onclick="creditAmount()">Credit</button>
+        <button onclick="debitAmount()">Debit</button>
+        <button onclick="resetPin()">Reset PIN</button>
+    </div>
+
+    <h3>Output</h3>
+    <div id="output">Account status will appear here.</div>
+
+    <script>
+        class Accountcreator {
+            constructor() {
+                this.holderName = null;
+                this.accountNo = null;
+                this.ifscCode = null;
+                this.bankName = null;
+                this.branchName = null;
+                this.accountBalance = 0;
+                this.atmPin = 0;
+                this.mobileNumber = null;
+            }
+
+            createAcc(holderName, ifscCode, bankName, branchName, mobileNumber, initialDeposit) {
+                this.holderName = holderName;
+                this.ifscCode = ifscCode;
+                this.bankName = bankName;
+                this.branchName = branchName;
+                this.mobileNumber = mobileNumber;
+                this.accountBalance = Number(initialDeposit);
+                this.accountNo = this.generateAccountNo();
+                this.atmPin = this.generateAtmPin();
+
+                return `✅ Account created successfully!
+Account Holder: ${this.holderName}
+Account No: ${this.accountNo}
+ATM PIN: ${this.atmPin}
+Initial Balance: ₹${this.accountBalance}`;
+            }
+
+            generateAtmPin() {
+                return Math.floor(Math.random() * 9000) + 1000;
+            }
+
+            generateAccountNo() {
+                return Math.floor(Math.random() * 9000000000) + 1000000000;
+            }
+
+            debit(amount, enteredPin) {
+                if (enteredPin !== this.atmPin) return "❌ Wrong ATM PIN.";
+                if (amount <= 0) return "❌ Enter an amount greater than 0.";
+                if (amount > this.accountBalance) return "❌ Insufficient balance.";
+
+                this.accountBalance -= amount;
+                return `✅ ₹${amount} debited.\nRemaining Balance: ₹${this.accountBalance}`;
+            }
+
+            credit(amount) {
+                if (amount <= 0 || isNaN(amount)) return "❌ Invalid credit amount.";
+                this.accountBalance += amount;
+                return `✅ ₹${amount} credited.\nNew Balance: ₹${this.accountBalance}`;
+            }
+
+            resetPin(oldPin, newPin) {
+                if (oldPin !== this.atmPin) return "❌ Incorrect current PIN.";
+                this.atmPin = newPin;
+                return "✅ PIN changed successfully.";
+            }
+        }
+
+        let user1 = null;
+
+        document.getElementById("accountForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const holderName = document.getElementById("holderName").value;
+            const ifscCode = document.getElementById("ifscCode").value;
+            const bankName = document.getElementById("bankName").value;
+            const branchName = document.getElementById("branchName").value;
+            const mobileNumber = document.getElementById("mobileNumber").value;
+            const initialDeposit = document.getElementById("initialDeposit").value;
+
+            user1 = new Accountcreator();
+            const result = user1.createAcc(holderName, ifscCode, bankName, branchName, mobileNumber, initialDeposit);
+            showOutput(result);
+        });
+
+        function creditAmount() {
+            if (!user1) return showOutput("❌ Please create an account first.");
+            const amount = parseFloat(document.getElementById("amount").value);
+            showOutput(user1.credit(amount));
+        }
+
+        function debitAmount() {
+            if (!user1) return showOutput("❌ Please create an account first.");
+            const amount = parseFloat(document.getElementById("amount").value);
+            const pin = parseInt(document.getElementById("pinInput").value);
+            showOutput(user1.debit(amount, pin));
+        }
+
+        function resetPin() {
+            if (!user1) return showOutput("❌ Please create an account first.");
+            const oldPin = parseInt(document.getElementById("pinInput").value);
+            const newPin = parseInt(document.getElementById("newPinInput").value);
+            showOutput(user1.resetPin(oldPin, newPin));
+        }
+
+        function showOutput(message) {
+            document.getElementById("output").textContent = message;
+        }
+    </script>
+</body>
+
+</html>

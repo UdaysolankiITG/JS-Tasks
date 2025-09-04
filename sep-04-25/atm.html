@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Accountcreator {
+            constructor() {
+                this.holderName = null;
+                this.accountNo = null;
+                this.ifscCode = null;
+                this.bankName = null;
+                this.branchName = null;
+                this.accountBalance = 0;
+                this.atmPin = 0;
+                this.mobileNumber = null;
+            }
+
+            createAcc(holderName, ifscCode, bankName, branchName, mobileNumber, initialDeposit) {
+                this.holderName = holderName;
+                this.ifscCode = ifscCode;
+                this.bankName = bankName;
+                this.branchName = branchName;
+                this.mobileNumber = mobileNumber;
+                this.accountBalance = initialDeposit;
+                this.accountNo = this.generateAccountNo();
+                this.atmPin = this.generateAtmPin();
+
+                return ` Account created successfully!
+                Account No: ${this.accountNo}
+                ATM PIN: ${this.atmPin}`;
+            }
+
+            generateAtmPin() {
+                return Math.floor(Math.random() * 9000) + 1000;
+            }
+
+            generateAccountNo() {
+                return Math.floor(Math.random() * 9000000000) + 1000000000;
+            }
+
+            debit(amount, enteredPin) {
+                if (enteredPin !== this.atmPin) {
+                    return " Wrong ATM PIN.";
+                }
+
+                if (amount <= 0) {
+                    return " Enter an amount greater than 0.";
+                }
+
+                if (amount > this.accountBalance) {
+                    return " Insufficient balance.";
+                }
+
+                this.accountBalance -= amount;
+                return ` ${amount} debited. Remaining Balance: ${this.accountBalance}`;
+            }
+
+            credit(amount) {
+                if (amount <= 0) {
+                    return " Invalid credit amount.";
+                }
+
+                this.accountBalance += amount;
+                return ` ${amount} credited. New Balance: ${this.accountBalance}`;
+            }
+              resetPin(oldPin, newPin) {
+                if (oldPin !== this.atmPin) {
+                    return " Incorrect current PIN.";
+                }
+
+                this.atmPin = newPin;
+                return "PIN changed successfully.";
+            }
+        }
+        const user1 = new Accountcreator();
+        console.log(user1.createAcc("Uday", "HDFC00041", "HDFC", "Dewas", "9876543210", 0
+
+        ));
+        console.log(user1.credit("57j99"));
+        console.log(user1.debit(30, user1.atmPin));
+        // console.log(user1.debit(100, 1111));
+        // console.log(user1.resetPin(user1.atmPin, 4321));
+        console.log(this.holderName)
+</script>
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // class Animal {
+        //     name = null; age = null; color = null; gender = null;
+        //     constructor(name,age,color,gender){
+        //         this.name = name;
+        //         this.age = age;
+        //         this.color = color;
+        //         this.gender = gender;
+        //     }
+        //     eat(){
+        //         console.log(`${this.name} is eating`);
+        //     }
+        //        play(){
+        //         console.log(`${this.name} is playing`);
+        //     }
+        //         sleep(){
+        //         console.log(`${this.name} is sleeping`);
+        //     }
+        //        barking(){
+        //         console.log(`${this.name} is barking`);
+        //     }
+        // }
+        //   const dog = new Animal("tommy",19,"white","mixed");
+        //   console.log(dog);
+
+
+
+        class Car {
+            name = null; color = null; number = null; brand = null; modal = null;
+            constructor(name, color, number, brand, modal) {
+                this.name = name;
+                this.color = color;
+                this.number = number;
+                this.brand = brand;
+                this.modal = modal;
+            }
+            playmusic() {
+                console.log(`Music is been played in ${this.name}`);
+
+            }
+            stop() {
+                console.log(`${this.name} has stoped`);
+
+            }
+            start() {
+                console.log(`${this.name} is started`);
+
+            }
+            light() {
+                console.log(`${this.name} lights are on`);
+
+            }
+            lightof() {
+                console.log(`${this.name} lights are of`);
+
+            }
+            getmodal() {
+                return this.modal;
+
+            }
+            getbrand() {
+                return this.brand;
+
+            }
+            getname() {
+                return this.name
+            }
+            getcolor() {
+                return this.color
+            }
+            setname(name) {
+                return this.name = name;
+            }
+            setbrand(brand) {
+                return this.brand = brand;
+            }
+            setmodal(modal) {
+                return this.modal = modal;
+            }
+            setcolor(color) {
+                return this.color = color;
+            }
+        }
+        const Bmw = new Car("M002", "grey", 'MP09MX0407', "BMW", 2006)
+        console.log(Bmw.getname())
+        console.log(Bmw.getmodal())
+        console.log(Bmw.getbrand())
+        Bmw.setname("M1111")
+        Bmw.setbrand("AUDI")
+        Bmw.setmodal(2025)
+        Bmw.setcolor("blue")
+
+        console.log(Bmw.getname())
+        console.log(Bmw.getmodal())
+        console.log(Bmw.getbrand())
+        console.log(Bmw.getcolor())
+
+    </script>
+</body>
+
+</html>

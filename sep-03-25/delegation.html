@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        .all{
+            height: 100px;
+            width: 100px;
+            background-color: aqua;   
+             }
+             .container{
+                display: grid;
+              grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+                gap: 5px;
+             }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+        <div class="all"></div>
+       
+    </div>
+    <script>
+        const  container = document.querySelector(".container")
+        const main = document.querySelectorAll(".all")
+        function  clicker(event) {
+            if (event.target.classList[0] == "all") {
+               alert("div is clicked")
+            }
+        }
+        // Array.from(main).forEach(Element => {
+        //     Element.addEventListener("click", () => {
+        //         alert("div is clicked")
+        //     })
+        // })
+        container.addEventListener("click",(e)=>{clicker(e)})
+    </script>
+</body>
+</html>
