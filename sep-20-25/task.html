@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skeuomorphic Task Manager</title>
+    <style>
+        /* General & Typography */
+:root {
+    --primary-color: #8e2de2;
+    --secondary-color: #4a00e0;
+    --background-color: #f0f2f5;
+    --card-color: #ffffff;
+    --text-color: #333;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-dark: rgba(0, 0, 0, 0.05);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+h1, h2 {
+    font-weight: 600;
+}
+
+p {
+    color: #666;
+}
+
+/* Main Container */
+.main-container {
+    text-align: center;
+    background: var(--card-color);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px var(--shadow-light), 0 5px 15px var(--shadow-dark);
+    max-width: 600px;
+    width: 90%;
+    margin: 20px auto;
+}
+
+.header {
+    margin-bottom: 30px;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Buttons */
+.btn {
+    padding: 15px 25px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    background: var(--secondary-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Modals */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: var(--card-color);
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 30px;
+    font-weight: 300;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close:hover {
+    color: #555;
+}
+
+/* Forms and Inputs */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input, textarea, select {
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: var(--secondary-color);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08), 0 0 0 3px rgba(74, 0, 224, 0.1);
+    outline: none;
+}
+
+/* Task & Note Lists */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: var(--card-color);
+    padding: 15px 20px;
+    margin: 10px 0;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.priority-indicator {
+    width: 10px;
+    height: 100%;
+    border-radius: 5px;
+    min-height: 50px;
+    min-width: 5px;
+    background-color: var(--secondary-color);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.High { background-color: #ef4444; }
+.Medium { background-color: #f97316; }
+.Low { background-color: #22c55e; }
+
+.task-info {
+    text-align: left;
+}
+
+.task-info strong {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.task-info small {
+    color: #888;
+}
+
+li button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+@media (max-width: 600px) {
+    .main-container {
+        padding: 30px 20px;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .modal-content {
+        margin: 5% auto;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="header">
+            <h1>📝 Task Manager</h1>
+            <p>Manage your tasks and notes with style.</p>
+        </div>
+
+        <div class="action-buttons">
+            <button id="addTaskBtn" class="btn">Add Task</button>
+            <button id="viewTasksBtn" class="btn">View All Tasks</button>
+            <button id="addNoteBtn" class="btn">Add Note</button>
+        </div>
+    </div>
+
+    <div id="addTaskModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeTask">&times;</span>
+            <h2>Add Task</h2>
+            <form id="taskForm">
+                <input type="text" id="title" placeholder="Task Title" required>
+                <textarea id="desc" placeholder="Task Description (Optional)"></textarea>
+                <input type="date" id="date" required>
+                <select id="priority">
+                    <option value="High">🔴 High Priority</option>
+                    <option value="Medium">🟡 Medium Priority</option>
+                    <option value="Low">🟢 Low Priority</option>
+                </select>
+                <button type="submit" class="btn">Add Task</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="viewTasksModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeView">&times;</span>
+            <h2>All Tasks</h2>
+            <ul id="taskList"></ul>
+        </div>
+    </div>
+
+    <div id="addNoteModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeNote">&times;</span>
+            <h2>Add Note</h2>
+            <form id="noteForm">
+                <textarea id="noteInput" placeholder="Write a note..." required></textarea>
+                <button type="submit" class="btn">Add Note</button>
+            </form>
+            <ul id="noteList"></ul>
+        </div>
+    </div>
+
+    <script>
+        
+const addTaskBtn = document.getElementById("addTaskBtn");
+const viewTasksBtn = document.getElementById("viewTasksBtn");
+const addNoteBtn = document.getElementById("addNoteBtn");
+
+const addTaskModal = document.getElementById("addTaskModal");
+const viewTasksModal = document.getElementById("viewTasksModal");
+const addNoteModal = document.getElementById("addNoteModal");
+
+const closeTask = document.getElementById("closeTask");
+const closeView = document.getElementById("closeView");
+const closeNote = document.getElementById("closeNote");
+
+const taskForm = document.getElementById("taskForm");
+const noteForm = document.getElementById("noteForm");
+const taskList = document.getElementById("taskList");
+const noteList = document.getElementById("noteList");
+
+
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+let notes = JSON.parse(localStorage.getItem("notes")) || [];
+
+
+addTaskBtn.onclick = () => addTaskModal.style.display = "block";
+viewTasksBtn.onclick = () => {
+    viewTasksModal.style.display = "block";
+    renderTasks();
+};
+addNoteBtn.onclick = () => addNoteModal.style.display = "block";
+
+closeTask.onclick = () => addTaskModal.style.display = "none";
+closeView.onclick = () => viewTasksModal.style.display = "none";
+closeNote.onclick = () => addNoteModal.style.display = "none";
+
+window.onclick = e => {
+    if (e.target === addTaskModal) addTaskModal.style.display = "none";
+    if (e.target === viewTasksModal) viewTasksModal.style.display = "none";
+    if (e.target === addNoteModal) addNoteModal.style.display = "none";
+}
+
+
+taskForm.addEventListener("submit", e => {
+    e.preventDefault();
+    const title = document.getElementById("title").value;
+    const desc = document.getElementById("desc").value;
+    const date = document.getElementById("date").value;
+    const priority = document.getElementById("priority").value;
+
+    tasks.push({ title, desc, date, priority, completed: false });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    taskForm.reset();
+    addTaskModal.style.display = "none";
+});
+
+function renderTasks() {
+    taskList.innerHTML = "";
+    tasks.forEach((task, i) => {
+        const li = document.createElement("li");
+        li.className = 'task-item-card';
+        li.innerHTML = `
+            <div class="task-item">
+                <div class="priority-indicator ${task.priority}"></div>
+                <div class="task-info">
+                    <strong>${task.title}</strong>
+                    <small>Due: ${task.date} - Priority: ${task.priority}</small>
+                    ${task.desc ? `<p>${task.desc}</p>` : ''}
+                </div>
+            </div>
+            <div class="task-actions">
+                <button onclick="toggleComplete(${i})" aria-label="Toggle Complete">
+                    <img src="https://img.icons8.com/material-outlined/24/000000/checkmark--v1.png" alt="Complete">
+                </button>
+                <button onclick="deleteTask(${i})" aria-label="Delete Task">
+                    <img src="https://img.icons8.com/material-outlined/24/000000/trash.png" alt="Delete">
+                </button>
+            </div>
+        `;
+        if (task.completed) {
+            li.style.textDecoration = "line-through";
+            li.style.opacity = "0.7";
+        }
+        taskList.appendChild(li);
+    });
+}
+
+function toggleComplete(i) {
+    tasks[i].completed = !tasks[i].completed;
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    renderTasks();
+}
+
+function deleteTask(i) {
+    tasks.splice(i, 1);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    renderTasks();
+}
+
+
+noteForm.addEventListener("submit", e => {
+    e.preventDefault();
+    const note = document.getElementById("noteInput").value;
+    if (!note) return;
+    notes.push(note);
+    localStorage.setItem("notes", JSON.stringify(notes));
+    noteForm.reset();
+    renderNotes();
+});
+
+function renderNotes() {
+    noteList.innerHTML = "";
+    notes.forEach((n, i) => {
+        const li = document.createElement("li");
+        li.innerHTML = `${n} <button onclick="deleteNote(${i})">❌</button>`;
+        noteList.appendChild(li);
+    });
+}
+
+function deleteNote(i) {
+    notes.splice(i, 1);
+    localStorage.setItem("notes", JSON.stringify(notes));
+    renderNotes();
+}
+
+
+renderNotes();
+    </script>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mini StackFlow - Beginner</title>
+  <style>
+    /* Basic CSS for layout and colors */
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      color: #212529;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1 {
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      background-color: #007bff;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    /* Question cards */
+    .question-card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 15px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .vote-container {
+      text-align: center;
+      width: 70px;
+      user-select: none;
+    }
+
+    .vote-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: #666;
+      display: block;
+      margin: 5px auto;
+    }
+
+    .vote-btn:hover {
+      color: #28a745;
+    }
+
+    .vote-count {
+      font-weight: bold;
+      font-size: 18px;
+      margin: 5px 0;
+    }
+
+    .question-content {
+      flex-grow: 1;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      font-weight: bold;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: #333;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    form input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 12px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>All Questions</h1>
+      <button id="open-modal-btn" class="btn">Ask Question</button>
+    </header>
+
+    <div id="questions-container">
+      <!-- Questions will appear here -->
+    </div>
+  </div>
+
+  <!-- Modal for adding question -->
+  <div id="question-modal" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" id="close-modal-btn">&times;</button>
+      <h2>Ask a Public Question</h2>
+      <form id="add-question-form">
+        <label for="question-title">Title</label>
+        <input type="text" id="question-title" placeholder="e.g., What is an HTTP request?" required />
+        <button type="submit" class="btn">Post Your Question</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Store questions in an array (in-memory)
+    let questions = [
+      {
+        id: 1,
+        title: "What is an HTTP request?",
+        votes: 5,
+        user: "Anonymous"
+      },
+      {
+        id: 2,
+        title: "How do I use JavaScript?",
+        votes: 2,
+        user: "User123"
+      }
+    ];
+
+    // Elements
+    const questionsContainer = document.getElementById('questions-container');
+    const modal = document.getElementById('question-modal');
+    const openModalBtn = document.getElementById('open-modal-btn');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const addQuestionForm = document.getElementById('add-question-form');
+    const questionTitleInput = document.getElementById('question-title');
+
+    // Render questions
+    function renderQuestions() {
+      questionsContainer.innerHTML = '';
+      if (questions.length === 0) {
+        questionsContainer.innerHTML = '<p>No questions yet. Be the first to ask!</p>';
+        return;
+      }
+
+      // Sort by votes descending
+      questions.sort((a, b) => b.votes - a.votes);
+
+      questions.forEach(q => {
+        const card = document.createElement('div');
+        card.className = 'question-card';
+
+        card.innerHTML = `
+          <div class="vote-container">
+            <button class="vote-btn upvote" data-id="${q.id}">▲</button>
+            <div class="vote-count">${q.votes}</div>
+            <button class="vote-btn downvote" data-id="${q.id}">▼</button>
+          </div>
+          <div class="question-content">
+            <h3>${q.title}</h3>
+            <p>Asked by <strong>${q.user}</strong></p>
+          </div>
+        `;
+
+        questionsContainer.appendChild(card);
+      });
+    }
+
+    // Open modal
+    openModalBtn.addEventListener('click', () => {
+      modal.classList.add('active');
+      questionTitleInput.focus();
+    });
+
+    // Close modal
+    closeModalBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+      addQuestionForm.reset();
+    });
+
+    // Close modal on outside click
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+        addQuestionForm.reset();
+      }
+    });
+
+    // Handle new question submission
+    addQuestionForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const title = questionTitleInput.value.trim();
+      if (!title) return;
+
+      // Add new question (simple ID logic)
+      const newQuestion = {
+        id: questions.length ? questions[questions.length - 1].id + 1 : 1,
+        title,
+        votes: 0,
+        user: "Anonymous"
+      };
+
+      questions.push(newQuestion);
+      renderQuestions();
+
+      // Close modal & reset form
+      modal.classList.remove('active');
+      addQuestionForm.reset();
+    });
+
+    // Handle vote clicks (event delegation)
+    questionsContainer.addEventListener('click', (e) => {
+      if (e.target.classList.contains('upvote')) {
+        const id = parseInt(e.target.dataset.id);
+        const question = questions.find(q => q.id === id);
+        if (question) {
+          question.votes++;
+          renderQuestions();
+        }
+      } else if (e.target.classList.contains('downvote')) {
+        const id = parseInt(e.target.dataset.id);
+        const question = questions.find(q => q.id === id);
+        if (question && question.votes > 0) {
+          question.votes--;
+          renderQuestions();
+        }
+      }
+    });
+
+    // Initial render
+    renderQuestions();
+  </script>
+</body>
+</html>
